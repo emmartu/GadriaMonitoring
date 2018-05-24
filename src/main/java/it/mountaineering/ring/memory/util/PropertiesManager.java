@@ -1,12 +1,11 @@
 package it.mountaineering.ring.memory.util;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.Properties;
+
+import it.mountaineering.ring.memory.webcam.WebcamProperty;
 
 public class PropertiesManager {
 
@@ -64,5 +63,20 @@ public class PropertiesManager {
 		long overlap = Long.parseLong(prop.getProperty("Overlap"));
 
 		return overlap;
+	}
+
+	public static WebcamProperty getWebcamPropertyById(String webcamId) {
+		WebcamProperty webcamProperty = new WebcamProperty();
+
+		boolean enabled = Boolean.parseBoolean(prop.getProperty(webcamId+"_enabled"));
+		webcamProperty.setEnabled(enabled);
+		
+		String relativeStore = prop.getProperty(webcamId+"_relativeStore");
+		webcamProperty.setRelativeStorageFolder(relativeStore);
+
+		String webcamIP = prop.getProperty(webcamId+"ip");
+		webcamProperty.setIp(webcamIP);
+
+		return webcamProperty;
 	}
 }

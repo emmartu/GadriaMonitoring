@@ -19,7 +19,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 		String[] webcamArray = PropertiesManager.getWebcamArray();
 		
 		for (int i = 0; i < webcamArray.length; i++) {
-			WebcamProperty webcamProperty = PropertiesManager.getWebcamPropertyByName(webcamArray[i]);
+			WebcamProperty webcamProperty = PropertiesManager.getWebcamPropertyById(webcamArray[i]);
 			System.out.println("Time is :" + now); // Display current time
 		}
 
