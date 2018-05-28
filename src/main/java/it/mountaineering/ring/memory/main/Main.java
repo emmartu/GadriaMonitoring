@@ -1,13 +1,13 @@
 package it.mountaineering.ring.memory.main;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.logging.Logger;
 
+import it.mountaineering.ring.memory.exception.PropertiesException;
 import it.mountaineering.ring.memory.scheduled.task.VlcLauncherScheduledTask;
 import it.mountaineering.ring.memory.util.PropertiesManager;
 
@@ -16,63 +16,51 @@ public class Main {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(Main.class.getName());
 	private static final long MIN_SPACE = 1000;
+
+	public static Timer timer;
+	public static VlcLauncherScheduledTask vlcLauncher;
 	
 	Properties prop = new Properties();
 	OutputStream output = null;
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		
+
 		main.launchScheduledTasks();
-		
-		try {
-			Runtime.
-			   getRuntime().
-			   exec("cmd /c test.bat");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//System.out.println(PropertiesManager.getStorageFolder());
-		//long space = main.getFolderSpace();
-		
-		//System.out.println("space = "+space);
-		
-		//if (DiskSpaceManager.isDiskSpaceAvailable()) {
-		//	main.launchVlcRecord();
-		//}else {
-		//	main.freeDiskSpace();
+
+		//try {
+		//	Runtime.
+		//	   getRuntime().
+		//	   exec("cmd /c test.bat");
+		//} catch (IOException e) {
+		//	// TODO Auto-generated catch block
+		//	e.printStackTrace();
 		//}
 
 	}
 	
 	
 	private void launchScheduledTasks() {
-		Long videoLength = PropertiesManager.getVideoLength();
+		Long videoLength = 0L;
+		try {
+			videoLength = PropertiesManager.getVideoLength();
+		} catch (PropertiesException e) {
+			e.printStackTrace();
+		}
+
 		Long overlap = PropertiesManager.getOverlap();
 		
 		Long taskTimePeriod = videoLength-overlap;
-		Timer time = new Timer();
-		VlcLauncherScheduledTask vlcLauncher = new VlcLauncherScheduledTask();
-		time.schedule(vlcLauncher, 0, taskTimePeriod);
-
-		//for demo only.
-		//for (int i = 0; i <= 5; i++) {
-		//	System.out.println("Execution in Main Thread...." + i);
-		//	try {
-		//		Thread.sleep(2000);
-		//	} catch (InterruptedException e) {
-		//		// TODO Auto-generated catch block
-		//		e.printStackTrace();
-		//	}
-		//	if (i == 5) {
-		//		System.out.println("Application Terminates");
-		//		System.exit(0);
-		//	}
-		//}		
+		Long millisTaskTimePeriod = 1000*taskTimePeriod;
+		timer = new Timer();
+		vlcLauncher = new VlcLauncherScheduledTask();
+		timer.schedule(vlcLauncher, 0, millisTaskTimePeriod);
 	}
 
+	/*
+	timer.cancel();
+	timer.purge();
+	 */
 
 	public void freeDiskSpace() {
 		// TODO Auto-generated method stub

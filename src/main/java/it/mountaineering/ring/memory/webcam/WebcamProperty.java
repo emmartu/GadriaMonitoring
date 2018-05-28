@@ -2,9 +2,18 @@ package it.mountaineering.ring.memory.webcam;
 
 public class WebcamProperty {
 
+	String iD;
 	boolean enabled;
 	String ip;
 	String relativeStorageFolder;
+
+	public String getiD() {
+		return iD;
+	}
+
+	public void setiD(String iD) {
+		this.iD = iD;
+	}
 
 	public boolean isEnabled() {
 		return enabled;

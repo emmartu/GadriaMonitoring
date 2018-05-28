@@ -1,21 +1,18 @@
 @echo off
 
+set WEBCAM_ID=%1
+set WEBCAM_IP=%2
+set STORAGE_FOLDER=%3
+set RECORD_TIME=%4
+
 set SAVESTAMP=%DATE:/=-%@%TIME::=-%
-set FILE_NAME=%SAVESTAMP:,=.%.mp4
+set FILE_NAME=%WEBCAM_ID%_%SAVESTAMP:,=.%.mp4
+set STORAGE_PATH=%STORAGE_FOLDER%%FILE_NAME%
 
-FOR /F "tokens=3,* delims=.=" %%G IN (config.properties) DO ( set %%G=%%H )
+set STREAM_PATH="http://%WEBCAM_IP%/control/faststream.jpg?stream=MxPEG&framestep=1&fps=0.00&jpheadrefresh=3&extmxm"
 
-rem now use below vars
-if "%%G"=="StorageFolder"
- set StorageFolder=%%H
-if "%%G"=="DiskSpace"
- set DiskSpace=%%H
-if "%%G"=="MinDiskSpace"
- set MinDiskSpace=%%H
-if "%%G"=="VideoLanExePath"
- set VideoLanExePath=%%H
+echo %STREAM_PATH%
+echo %STORAGE_PATH%
+echo %RECORD_TIME%
 
-echo %VideoLanExePath%
-
-
-rem %VideoLanExePath% -I dummy --run-time=10 --live-caching 2000 --avformat-format=mxg "http://111.0.0.1/control/faststream.jpg?stream=MxPEG&framestep=1&fps=0.00&jpheadrefresh=3&extmxm" --sout="#transcode{vcodec=h264,acodec=none}:duplicate{dst=std{access=file,mux=mp4, dst='C:\Users\Lele\Documents\LavoroWebCamMobotix\AVI_Exports\%FILE_NAME%'},dst=nodisplay}" vlc://quit
+rem "C:\Program Files\VideoLAN\VLC\vlc.exe" -I dummy --run-time=%RECORD_TIME% --live-caching 2000 --avformat-format=mxg %STREAM_PATH% --sout="#transcode{vcodec=h264,acodec=none}:duplicate{dst=std{access=file,mux=mp4, dst='%STORAGE_PATH%'},dst=nodisplay}" vlc://quit
