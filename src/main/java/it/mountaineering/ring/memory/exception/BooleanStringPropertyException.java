@@ -1,9 +1,10 @@
 package it.mountaineering.ring.memory.exception;
 
-public class NumberFormatPropertiesException extends PropertiesException {
+public class BooleanStringPropertyException extends WebcamPropertyIDException {
 
-	public NumberFormatPropertiesException(String exception) {
+	public BooleanStringPropertyException(String exception) {
 		super();
 		mailSender.sendPropertiesExceptionEmail(exceptionPrefixString, exception, exceptionSuffixString);
 	}
+
 }

@@ -29,9 +29,9 @@ public class DiskSpaceManager {
 
 		long diskSpaceAvailable = PropertiesManager.getDiskSpace() - size;
 
-		if (diskSpaceAvailable < PropertiesManager.getMinDiskSpace()) {
+		/*if (diskSpaceAvailable < PropertiesManager.getDiskSpace()) {
 			return false;
-		}
+		}*/
 
 		return true;
 	}
@@ -39,7 +39,7 @@ public class DiskSpaceManager {
 	private static void PopulateFileMap() {
 
 		long length = 0;
-		String storageFolder = PropertiesManager.getStorageFolder();
+		String storageFolder = PropertiesManager.getAbsoluteStorageFolder();
 		String directoryPath = storageFolder.replace("\\", "\\\\");
 
 		File directory = new File(storageFolder);

@@ -1,7 +1,6 @@
 package it.mountaineering.ring.memory.exception;
 
 import it.mountaineering.ring.memory.mail.sender.MailSender;
-import it.mountaineering.ring.memory.main.Main;
 
 public class PropertiesException extends Exception {
 
@@ -11,12 +10,17 @@ public class PropertiesException extends Exception {
 	protected String exceptionSuffixString = "Timer Task Has Been Stopped";
 
 	public PropertiesException() {
+		exceptionPrefixString = "Exception occured reading properties File.";
+		exceptionSuffixString = "Timer Task Has Been Stopped";
+
+		/*
 		if(Main.vlcLauncher.isHasStarted()) {
 			Main.timer.cancel();
 			Main.timer.purge();
 			
 			exceptionSuffixString = "";
 		}
+		*/
 	}
 
 	public PropertiesException(String exception) {		

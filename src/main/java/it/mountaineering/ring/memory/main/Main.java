@@ -20,13 +20,20 @@ public class Main {
 	public static Timer timer;
 	public static VlcLauncherScheduledTask vlcLauncher;
 	
-	Properties prop = new Properties();
+	PropertiesManager prop = new PropertiesManager();
 	OutputStream output = null;
 
 	public static void main(String[] args) {
 		Main main = new Main();
 
-		main.launchScheduledTasks();
+		try {
+			main.setupProperties();
+		} catch (PropertiesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//main.launchScheduledTasks();
 
 		//try {
 		//	Runtime.
@@ -39,14 +46,20 @@ public class Main {
 
 	}
 	
-	
+	private void setupProperties() throws PropertiesException {
+		log.info("*******************************************");
+		log.info("*******************************************");
+		log.info("****** WEBCAM VIDEO RECORDER MANAGER ******");
+		log.info("*******************************************");
+		log.info("*******************************************");
+
+		PropertiesManager.setupConfigProperties();
+	}
+
+
 	private void launchScheduledTasks() {
 		Long videoLength = 0L;
-		try {
-			videoLength = PropertiesManager.getVideoLength();
-		} catch (PropertiesException e) {
-			e.printStackTrace();
-		}
+		videoLength = PropertiesManager.getVideoLength();
 
 		Long overlap = PropertiesManager.getOverlap();
 		
@@ -84,7 +97,7 @@ public class Main {
 
 	public long getFolderSpace() {
 		long space = 0L;
-		String folderName = PropertiesManager.getStorageFolder();
+		String folderName = PropertiesManager.getAbsoluteStorageFolder();
 		//String folderName = "C:\\Users\\Lele\\Documents\\LavoroWebCamMobotix\\TEST_FOLDER";
 		File fl = new File(folderName);
 		if (fl.exists()) {

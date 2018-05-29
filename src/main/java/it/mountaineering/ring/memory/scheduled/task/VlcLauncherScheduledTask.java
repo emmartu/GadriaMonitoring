@@ -26,29 +26,15 @@ public class VlcLauncherScheduledTask extends TimerTask {
 		this.hasStarted = true;
 		
 		String[] webcamArray = null;
-		try {
-			webcamArray = PropertiesManager.getWebcamArray();
-		} catch (CSVFormatPropertiesException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		webcamArray = PropertiesManager.getWebcamNames();
 		
 		String absoluteStorageFolder = PropertiesManager.getAbsoluteStorageFolder();
 		Long videoLength = 0L;
-		try {
-			videoLength = PropertiesManager.getVideoLength();
-		} catch (PropertiesException e1) {
-			e1.printStackTrace();
-		}
+		videoLength = PropertiesManager.getVideoLength();
 
 		for (int i = 0; i < webcamArray.length; i++) {
 			WebcamProperty webcamProperty = null;
-			try {
-				webcamProperty = PropertiesManager.getWebcamPropertyById(webcamArray[i]);
-			} catch (WebcamPropertyIDException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			webcamProperty = PropertiesManager.getWebcamPropertyById(webcamArray[i]);
 			System.out.println("Time is :" + now+ " webcam "+webcamArray[i]+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getRelativeStorageFolder());
 
 			String relativeStorageFolder = webcamProperty.getRelativeStorageFolder();

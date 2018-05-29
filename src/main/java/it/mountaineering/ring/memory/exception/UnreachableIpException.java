@@ -1,9 +1,10 @@
 package it.mountaineering.ring.memory.exception;
 
-public class NumberFormatPropertiesException extends PropertiesException {
+public class UnreachableIpException extends WebcamPropertyIDException {
 
-	public NumberFormatPropertiesException(String exception) {
+	public UnreachableIpException(String exception) {
 		super();
 		mailSender.sendPropertiesExceptionEmail(exceptionPrefixString, exception, exceptionSuffixString);
 	}
+
 }
