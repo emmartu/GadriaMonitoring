@@ -9,6 +9,7 @@ import it.mountaineering.ring.memory.exception.CSVFormatPropertiesException;
 import it.mountaineering.ring.memory.exception.PropertiesException;
 import it.mountaineering.ring.memory.exception.WebcamPropertyIDException;
 import it.mountaineering.ring.memory.main.Main;
+import it.mountaineering.ring.memory.util.DiskSpaceManager;
 import it.mountaineering.ring.memory.util.PropertiesManager;
 import it.mountaineering.ring.memory.webcam.WebcamProperty;
 
@@ -22,7 +23,6 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	public void run() {
 		log.info("run start!");
 		now = new Date(); // initialize date
-		System.out.println("Time is :" + now); // Display current time
 		this.hasStarted = true;
 		
 		String[] webcamArray = null;
@@ -32,10 +32,15 @@ public class VlcLauncherScheduledTask extends TimerTask {
 		Long videoLength = 0L;
 		videoLength = PropertiesManager.getVideoLength();
 
+		if(!DiskSpaceManager.isMemoryEnough()) {
+			DiskSpaceManager.deleteAncientBusyMemory();
+		}
+		
 		for (int i = 0; i < webcamArray.length; i++) {
 			WebcamProperty webcamProperty = null;
 			webcamProperty = PropertiesManager.getWebcamPropertyById(webcamArray[i]);
 			System.out.println("Time is :" + now+ " webcam "+webcamArray[i]+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getRelativeStorageFolder());
+			log.info("Time is :" + now+ " webcam "+webcamArray[i]+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getRelativeStorageFolder());
 
 			String relativeStorageFolder = webcamProperty.getRelativeStorageFolder();
 			absoluteStorageFolder = checkSlashesOnPath(absoluteStorageFolder);
@@ -57,6 +62,8 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	}
 
 	private String checkSlashesOnPath(String folderPath) {
+		log.info("check slashes end on folder path: "+folderPath);
+
 		if (!folderPath.endsWith("\\")) {
 			folderPath += "\\";
 		}
@@ -65,8 +72,11 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	}
 
 	private void checkFolder(String storageFolderFullPath) {
+		log.info("check if folder: "+storageFolderFullPath+" exists");
+
 		File directory = new File(storageFolderFullPath);
 		if (!directory.exists()||!directory.isDirectory()) {
+			log.info("folder doesn't exist, create");
 			directory.mkdir();	
 		}
 	}

@@ -11,17 +11,59 @@ public class DiskSpaceManager {
 	public static Map<String, Long> fileMap;
 	public static Long size = 0L;
 
-	private long folderSize(File directory) {
-		long length = 0;
-		for (File file : directory.listFiles()) {
-			if (file.isFile())
-				length += file.length();
-			else
-				length += folderSize(file);
+	
+	public static boolean isMemoryEnough() {
+		String storageFolder = PropertiesManager.getAbsoluteStorageFolder();
+		File storageFile = new File(storageFolder);
+		DiskSpaceFile diskSpaceFile = folderSize(storageFile);
+
+		Long safetythreshold = calculateSafetyThreshold(diskSpaceFile);
+		Long freeSpace = PropertiesManager.getDiskSpace() - diskSpaceFile.getFolderSize();
+		
+		if(freeSpace>=safetythreshold) {
+			return true;
 		}
-		return length;
+		
+		return false;
 	}
 
+	
+	private static Long calculateSafetyThreshold(DiskSpaceFile diskSpaceFile) {
+		Long safetythreshold = 0L;
+		
+		int enabledWebcam = PropertiesManager.getEnabledWebcam().keySet().size();
+		safetythreshold = (diskSpaceFile.getFolderSize() / diskSpaceFile.getFileNumber())*enabledWebcam;
+		Long fiftyPercent = (safetythreshold/100)*50;
+
+		safetythreshold = safetythreshold + fiftyPercent;
+		
+		return safetythreshold;
+	}
+
+
+	private static DiskSpaceFile folderSize(File directory) {
+		long length = 0;
+		long fileCounter = 0L;
+		DiskSpaceFile diskSpaceFile = new DiskSpaceFile();
+
+		String[] webcamArray = PropertiesManager.getWebcamNames();
+		String absoluteStorageFolder = PropertiesManager.getAbsoluteStorageFolder();
+		
+		for (File file : directory.listFiles()) {
+			if (file.isFile()) {
+				diskSpaceFile.addFolderSize(file.length());
+				diskSpaceFile.addFileNumber(1L);
+			}
+			else {
+				diskSpaceFile.addFolderSize(folderSize(file).getFolderSize());
+				diskSpaceFile.addFileNumber(folderSize(file).getFileNumber());
+			}
+		}
+		
+		return diskSpaceFile;
+	}
+
+		
 	public static boolean isDiskSpaceAvailable() {
 		if (size == 0) {
 			PopulateFileMap();
@@ -57,5 +99,10 @@ public class DiskSpaceManager {
 		}
 		
 		size = length;
+	}
+
+	
+	public static void main(String[] args) {
+		
 	}
 }

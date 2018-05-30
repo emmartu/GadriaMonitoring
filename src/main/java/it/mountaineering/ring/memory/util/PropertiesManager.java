@@ -22,9 +22,10 @@ public class PropertiesManager {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(PropertiesManager.class.getName());
 
-	private static Map<String,String> propertiesMap = new HashMap<String, String>();
-	private static Map<String,WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
-	private static String[] webcamArray;
+	protected static Map<String,String> propertiesMap = new HashMap<String, String>();
+	protected static Map<String,WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
+	protected static Map<String,WebcamProperty> enabledWebcamPropertiesMap = new HashMap<String, WebcamProperty>();
+	protected static String[] webcamArray;
 
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
@@ -100,11 +101,13 @@ public class PropertiesManager {
 				webcamProperty = getWebcamPropertyFromConfigPropertiesById(webcamArray[i]);
 			} catch (WebcamPropertyIDException e) {
 				log.info("error occured reading webcam "+webcamArray[i]+" property ");
-				e.printStackTrace();
 				continue;
 			}
 			
-			webcamPropertiesMap.put(webcamArray[i], webcamProperty);			
+			webcamPropertiesMap.put(webcamArray[i], webcamProperty);
+			if(webcamProperty.isEnabled()) {
+				enabledWebcamPropertiesMap.put(webcamArray[i], webcamProperty);
+			}
 		}
 		
 		log.info("***********************************************");
@@ -178,23 +181,20 @@ public class PropertiesManager {
 		return diskSpace;
 	}
 
-	private static String[] getWebcamNamesFromConfigProperties() throws CSVFormatPropertiesException {
+	protected static String[] getWebcamNamesFromConfigProperties() throws PropertiesException, CSVFormatPropertiesException {
 		String webcams = "";
 		
-		try {
-			webcams = getStringPropertyByName("WebCams");
-		} catch (PropertiesException e) {
-			e.printStackTrace();
-		}
+		webcams = getStringPropertyByName("WebCams");
 				
 		String[] webcamArray = null;
 		
-		try {
-			webcamArray = webcams.split(",");
-		}  catch (Exception e) {
-			throw new CSVFormatPropertiesException("Cannot Read correct CSV on Property WebCams");
+		webcamArray = webcams.split(",", -1);
+		for (String webcamName : webcamArray) {
+			if(webcamName==null || webcamName.trim() == "" || webcamName.isEmpty()) {
+				throw new CSVFormatPropertiesException("Cannot Read correct CSV on Property WebCams");
+			}
 		}
-		
+
 		return webcamArray;
 	}
 	
@@ -202,14 +202,10 @@ public class PropertiesManager {
 		return webcamArray;
 	}
 
-	private static Long getVideoLengthFromConfigProperties() {
+	protected static Long getVideoLengthFromConfigProperties() throws NumberFormatPropertiesException, PropertiesException {
 		long videoLength = 0L;
 		
-		try {
-			videoLength = getNumberPropertyByName("VideoLength");
-		} catch (PropertiesException e) {
-			e.printStackTrace();
-		}
+		videoLength = getNumberPropertyByName("VideoLength");
 		
 		return videoLength;
 	}
@@ -223,20 +219,16 @@ public class PropertiesManager {
 		return videoLength;
 	}
 	
-	private static Long getOverlapFromConfigProperties() {
+	protected static Long getOverlapFromConfigProperties() throws NumberFormatPropertiesException, PropertiesException {
 		long overlap = 0L;
 		
-		try {
-			overlap = getNumberPropertyByName("Overlap");
-		} catch (PropertiesException e) {
-			e.printStackTrace();
-		}
+		overlap = getNumberPropertyByName("Overlap");
 		
 		return overlap;
 	}
 
 	public static Long getOverlap() {
-		String overlapStr = propertiesMap.get("OverlapStr");
+		String overlapStr = propertiesMap.get("Overlap");
 		
 		Long overlap = Long.parseLong(overlapStr);
 
@@ -248,18 +240,24 @@ public class PropertiesManager {
 		
 		return webcamProperty;
 	}
-	
-	private static WebcamProperty getWebcamPropertyFromConfigPropertiesById(String webcamId) throws WebcamPropertyIDException {
+
+	public static Map<String, WebcamProperty> getEnabledWebcam() {
+		
+		return enabledWebcamPropertiesMap;
+	}
+
+	protected static WebcamProperty getWebcamPropertyFromConfigPropertiesById(String webcamId) throws WebcamPropertyIDException, UnreachableIpException {
 		WebcamProperty webcamProperty = new WebcamProperty();
 
 		webcamProperty.setiD(webcamId);
 
 		String enabledStr;
-		try {
-			enabledStr = prop.getProperty(webcamId+"_enabled");
-		} catch (Exception e) {
-			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_enabled");
+		
+		enabledStr = prop.getProperty(webcamId+"_enabled");
+		if(enabledStr == null || enabledStr.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot Read Property "+webcamId+"_enabled, property is null");
 		}
+
 		
 		boolean enabled = false;
 		
@@ -271,22 +269,22 @@ public class PropertiesManager {
 		webcamProperty.setEnabled(enabled);
 		
 		String relativeStore = "";
-		try {
-			relativeStore = prop.getProperty(webcamId+"_relativeStore");
-		} catch (Exception e) {
-			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_relativeStore");
+		relativeStore = prop.getProperty(webcamId+"_relativeStore");
+		if(relativeStore == null || relativeStore.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_relativeStore, property is null");
 		}
 		
 		webcamProperty.setRelativeStorageFolder(relativeStore);
 
 		String webcamIP = "";
-		try {
-			webcamIP = prop.getProperty(webcamId+"_ip");
-		} catch (Exception e) {
-			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_ip");
+		webcamIP = prop.getProperty(webcamId+"_ip");
+
+		if(webcamIP == null || webcamIP.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_ip, property is null");
 		}
-		
-		if(!isIPOnline(webcamIP)){
+
+			
+		if(enabled && !isIPOnline(webcamIP)){
 			throw new UnreachableIpException("Unable to reach "+webcamIP+" for webcam "+webcamId);
 		}
 		
@@ -312,14 +310,5 @@ public class PropertiesManager {
 		}
 		
 		return false;
-	}
-
-
-	public static void main(String[] args) {
-		String bstr = "tr";
-		
-		boolean enabled = Boolean.parseBoolean(bstr);
-
-		System.out.println("enabled: "+enabled);
 	}
 }

@@ -29,11 +29,12 @@ public class Main {
 		try {
 			main.setupProperties();
 		} catch (PropertiesException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info(e.getMessage());
+			log.info("the application has been stopped");
+			return;
 		}
 		
-		//main.launchScheduledTasks();
+		main.launchScheduledTasks();
 
 		//try {
 		//	Runtime.
@@ -60,7 +61,6 @@ public class Main {
 	private void launchScheduledTasks() {
 		Long videoLength = 0L;
 		videoLength = PropertiesManager.getVideoLength();
-
 		Long overlap = PropertiesManager.getOverlap();
 		
 		Long taskTimePeriod = videoLength-overlap;
@@ -74,16 +74,6 @@ public class Main {
 	timer.cancel();
 	timer.purge();
 	 */
-
-	public void freeDiskSpace() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void launchVlcRecord() {
-		// TODO Auto-generated method stub
-
-	}
 
 	public boolean isDiskSpaceAvailable() {
 		long space = getFolderSpace();
