@@ -26,6 +26,7 @@ public class PropertiesManager {
 	protected static Map<String,WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
 	protected static Map<String,WebcamProperty> enabledWebcamPropertiesMap = new HashMap<String, WebcamProperty>();
 	protected static String[] webcamArray;
+	protected static boolean checkIp = true;
 
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
@@ -103,7 +104,7 @@ public class PropertiesManager {
 				log.info("error occured reading webcam "+webcamArray[i]+" property ");
 				continue;
 			}
-			
+
 			webcamPropertiesMap.put(webcamArray[i], webcamProperty);
 			if(webcamProperty.isEnabled()) {
 				enabledWebcamPropertiesMap.put(webcamArray[i], webcamProperty);
@@ -283,8 +284,8 @@ public class PropertiesManager {
 			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_ip, property is null");
 		}
 
-			
-		if(enabled && !isIPOnline(webcamIP)){
+
+		if(checkIp && enabled && !isIPOnline(webcamIP)){
 			throw new UnreachableIpException("Unable to reach "+webcamIP+" for webcam "+webcamId);
 		}
 		

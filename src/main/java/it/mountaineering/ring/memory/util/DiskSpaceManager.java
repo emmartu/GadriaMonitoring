@@ -1,108 +1,96 @@
 package it.mountaineering.ring.memory.util;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class DiskSpaceManager {
 
 	public static Map<String, Long> fileMap;
+	private static DiskSpaceProperties diskSpaceProperties;
 	public static Long size = 0L;
 
-	
-	public static boolean isMemoryEnough() {
+	public static boolean hasEnoughMemory() {
 		String storageFolder = PropertiesManager.getAbsoluteStorageFolder();
 		File storageFile = new File(storageFolder);
-		DiskSpaceFile diskSpaceFile = folderSize(storageFile);
+		DiskSpaceProperties diskSpaceProperties = getDiskSpaceProperties(storageFile);
 
-		Long safetythreshold = calculateSafetyThreshold(diskSpaceFile);
-		Long freeSpace = PropertiesManager.getDiskSpace() - diskSpaceFile.getFolderSize();
-		
-		if(freeSpace>=safetythreshold) {
+		Long safetythreshold = calculateSafetyThreshold(diskSpaceProperties);
+		Long freeSpace = PropertiesManager.getDiskSpace() - diskSpaceProperties.getFolderSize();
+
+		if (freeSpace >= safetythreshold) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
-	
-	private static Long calculateSafetyThreshold(DiskSpaceFile diskSpaceFile) {
-		Long safetythreshold = 0L;
+	public static void deleteOldestFilesFromMemory() {
 		
-		int enabledWebcam = PropertiesManager.getEnabledWebcam().keySet().size();
-		safetythreshold = (diskSpaceFile.getFolderSize() / diskSpaceFile.getFileNumber())*enabledWebcam;
-		Long fiftyPercent = (safetythreshold/100)*50;
+		Collection<Long> unsortedEpochList = diskSpaceProperties.fileMap.keySet();
+		List<Long> sorted = asSortedList(unsortedEpochList);
+		Long firstItem = sorted.get(0);
 
-		safetythreshold = safetythreshold + fiftyPercent;
+		File file = diskSpaceProperties.fileMap.get(firstItem);
+
+		diskSpaceProperties.fileMap.remove(firstItem);
 		
-		return safetythreshold;
+		if (file.isFile()) {
+			file.delete();
+		}else{
+			deleteOldestFilesFromMemory();
+		}
 	}
 
+	private static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+	  List<T> list = new ArrayList<T>(c);
+	  java.util.Collections.sort(list);
+	  return list;
+	}
 
-	private static DiskSpaceFile folderSize(File directory) {
-		long length = 0;
-		long fileCounter = 0L;
-		DiskSpaceFile diskSpaceFile = new DiskSpaceFile();
+	protected static Long calculateSafetyThreshold(DiskSpaceProperties diskSpaceProperties) {
+		Double safetythreshold = new Double(0);
+		Double folderSize = new Double(diskSpaceProperties.getFolderSize());
 
-		String[] webcamArray = PropertiesManager.getWebcamNames();
-		String absoluteStorageFolder = PropertiesManager.getAbsoluteStorageFolder();
-		
+		safetythreshold = (folderSize / diskSpaceProperties.getFileNumber());
+		Double fiftyPercent = (safetythreshold / 100) * 50;
+
+		safetythreshold = safetythreshold + fiftyPercent;
+
+		Long longSafetythreshold = (new Double(safetythreshold)).longValue();
+
+		return longSafetythreshold;
+	}
+
+	protected static DiskSpaceProperties getDiskSpaceProperties(File directory) {
+		DiskSpaceProperties diskSpaceFile = new DiskSpaceProperties();
+
 		for (File file : directory.listFiles()) {
 			if (file.isFile()) {
 				diskSpaceFile.addFolderSize(file.length());
 				diskSpaceFile.addFileNumber(1L);
-			}
-			else {
-				diskSpaceFile.addFolderSize(folderSize(file).getFolderSize());
-				diskSpaceFile.addFileNumber(folderSize(file).getFileNumber());
+				diskSpaceFile.putFileInMap(file);
+			} else {
+				diskSpaceFile.addFolderSize(getDiskSpaceProperties(file).getFolderSize());
+				diskSpaceFile.addFileNumber(getDiskSpaceProperties(file).getFileNumber());
 			}
 		}
-		
+
 		return diskSpaceFile;
 	}
 
-		
-	public static boolean isDiskSpaceAvailable() {
-		if (size == 0) {
-			PopulateFileMap();
+	public static void addLatestFile(File file) {
+		if(diskSpaceProperties==null) {
+			diskSpaceProperties = new DiskSpaceProperties();
 		}
 
-		long diskSpaceAvailable = PropertiesManager.getDiskSpace() - size;
-
-		/*if (diskSpaceAvailable < PropertiesManager.getDiskSpace()) {
-			return false;
-		}*/
-
-		return true;
+		diskSpaceProperties.addFileNumber(1L);
+		diskSpaceProperties.addFolderSize(file.length());
+		diskSpaceProperties.putFileInMap(file);
 	}
 
-	private static void PopulateFileMap() {
-
-		long length = 0;
-		String storageFolder = PropertiesManager.getAbsoluteStorageFolder();
-		String directoryPath = storageFolder.replace("\\", "\\\\");
-
-		File directory = new File(storageFolder);
-		if (directory.exists()) {
-			if (directory.isDirectory()) {
-
-				for (File file : directory.listFiles()) {
-					if (file.isFile()) {
-						// fileMap.put(file.getName(), file.length());
-						length += file.length();
-					}
-				}
-
-			}
-		}
-		
-		size = length;
-	}
-
-	
-	public static void main(String[] args) {
-		
-	}
 }

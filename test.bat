@@ -2,12 +2,12 @@
 
 set WEBCAM_ID=%1
 set WEBCAM_IP=%2
-set STORAGE_FOLDER=%3
+set STORAGE_PATH=%3
 set RECORD_TIME=%4
 
-set SAVESTAMP=%DATE:/=-%@%TIME::=-%
-set FILE_NAME=%WEBCAM_ID%_%SAVESTAMP:,=.%.mp4
-set STORAGE_PATH=%STORAGE_FOLDER%%FILE_NAME%
+rem set SAVESTAMP=%DATE:/=-%@%TIME::=-%
+rem set FILE_NAME=%WEBCAM_ID%_%SAVESTAMP:,=.%.mp4
+rem set STORAGE_PATH=%STORAGE_FOLDER%%FILE_NAME%
 
 set STREAM_PATH="http://%WEBCAM_IP%/control/faststream.jpg?stream=MxPEG&framestep=1&fps=0.00&jpheadrefresh=3&extmxm"
 

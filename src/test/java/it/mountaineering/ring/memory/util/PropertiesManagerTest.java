@@ -21,7 +21,6 @@ public class PropertiesManagerTest {
 	Map<String,WebcamProperty> webcamPropertiesMap;
 	String[] webcamArray;
 	
-	@Before
 	public void setUp() {
 		propertiesMap = new HashMap<String, String>();
 		propertiesMap.put("AbsoluteStorageFolder", "C:\\Users\\Lele\\Documents\\LavoroWebCamMobotix\\TEST_FOLDER\\");
@@ -156,6 +155,7 @@ public class PropertiesManagerTest {
 	
 	@Test
 	public void testSetupConfig() throws PropertiesException {
+		setUp();
 		String configFile = "src/test/resources/config.properties";
 		PropertiesManager.setConfigFile(configFile);
 		PropertiesManager.setupConfigProperties();

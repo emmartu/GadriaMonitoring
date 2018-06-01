@@ -16,20 +16,6 @@ public class MainTest {
 	}
 	
 	@Test
-	public void testFreeDiskSpace() {
-		mainToTest.freeDiskSpace();
-		long diskSpace = mainToTest.getFolderSpace();
-		//assertEquals(diskSpace<=);
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testLaunchVlcRecord() {
-		mainToTest.freeDiskSpace();
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testIsDiskSpaceAvailable() {
 		boolean hasSpace = mainToTest.isDiskSpaceAvailable();
 		fail("Not yet implemented");

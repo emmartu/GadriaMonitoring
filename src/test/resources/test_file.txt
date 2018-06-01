@@ -1,0 +1,2688 @@
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
+cenni di storia:
+
+Il termine “algoritmo” deriva dalla latinizzazione del nome del matematico persiano Muhammad ibn Musa al-Khwarizmi vissuto nel IX secolo, considerato
+uno dei primi autori ad aver fatto riferimento a questo concetto. Al-Khwarizmi è famoso per aver introdotto i cosiddetti numeri arabi: la sua
+opera “(Libro) di al-Khwarizmi sui numeri indiani” (825 d.C. circa) fu tradotta in latino come “Algorismi de numero Indorum” ed esercitò una profonda
+influenza nei secoli successivi: fu con questo libro, infatti, che in Europa si iniziò ad usare il sistema di notazione decimale posizionale. Le procedure che
+permettevano di effettuare calcoli in notazione decimale divennero, così, note come “Algorismi” o “Algoritmi” ed in seguito, lo stesso termine fu applicato
+in generale alle procedure di calcolo necessarie per ottenere un determinato risultato.
+Così, oggi, con la parola algoritmo, designamo una procedura generale, ossia una successione di istruzioni che indicano un procedimento la cui esecuzione
+è specificata nel dettaglio, si esplica in un numero finito di passi e mediante cui è possibile ottenere la risposta per ogni problema pertinente.
+In svariati campi della matematica è facile trovare esempi di algoritmi, basti pensare alla procedura per eseguire la divisione euclidea, oppure quella per il calcolo del massimo comun divisore
+tra due numeri. Con l’ avvento dell’ informatica e lo sviluppo dei calcolatori elettronici, poi, il termine algoritmo ha conosciuto un’ulteriore e feconda
+diffusione, in quanto è  stato possibile affidare l’ esecuzione di tali procedure anche alle macchine, programmate in opportuni linguaggi, riuscendo a ridurre
+notevolmente i tempi di computazione. In questo ambito un algoritmo si configura come un metodo di risoluzione di un problema
+
+- Un computer è una macchina risolve dei problemi eseguendo un insieme di azioni 
+- generalmente chiamiamo questa serie di azioni per risolvere un problema ALGORITMO
+
+--- Esempio del caffè, con interazione
+
+Ad esempio, per preparare il caffè bisogna:
+
+prendere la macchinetta del caffè, il caffè macinato ed un cucchiaino;
+aprire la macchinetta del caffè e successivamente togliere il filtro;
+riempire la macchinetta del caffè con dell’acqua;
+mettere il caffè macinato nel filtro tramite il cucchiaino;
+mettere il filtro con il caffè macinato sopra la macchinetta riempita con dell’acqua;
+chiudere la macchinetta del caffè;
+aprire il fornello;
+posizionare la macchinetta del caffè sul fornello.
+
+
+
+--- definizione algoritmo:
+ 
+ Da questa definizione si deducono quindi le seguenti proprietà fondamentali che deve avere un qualunque algoritmo:
+
+i passi dell’algoritmo devono essere elementari, cioè non possono essere ulteriormente divisibili (atomicità);
+i passi dell’algoritmo non possono essere interpretati in altri modi (non ambiguità);
+l’algoritmo deve per forza essere svolto in un certo numero di specifici passi e, allo stesso tempo, deve richiedere in ingresso soltanto una determinata quantità di dati (finitezza);
+l’esecuzione dell’algoritmo deve terminare entro un certo periodo di tempo (terminazione);
+l’esecuzione dell’algoritmo deve portare ad un risultato univoco (effettività);
+ogni passo dell’algoritmo deve essere ben stabilito (determinismo).
+
+
+- Diremo decidibile un problema per il quale esiste un algoritmo
+(quindi una procedura eseguibile con un numero finito di passi) in grado di
+risolverlo.
+
+ - Quali problemi può risolvere un elaboratore?
+ - Esistono problemi che un elaboratore non può risolvere?
+
+- Le macchine di Turing sono strumenti astratti estremamente
+semplici in grado di manipolare simboli. Nonostante la loro
+semplicita’ possono essere adatti a simulare la logica di ogni
+algoritmo
+
+- Esse furono descritti da Alan Turing nel 1936. Sebbene
+tecnicamente fattibili le macchine di Turing non erano intese come
+reale tecnologia di calcolo, ma come un esperimento speculativo
+sui limiti della meccanica computazionale. Le macchine di Turing
+non furono in realta’ mai costruite, ma lo studio delle loro proprieta’
+astratte porta a diversi sviluppi nella scienza dei computer e nella
+teoria della complessita’. 
+
+- La macchina è formata da una testina di lettura e scrittura con cui è in
+grado di leggere e scrivere su un nastro potenzialmente infinito
+partizionato, in maniera discreta, in caselle. Ad ogni istante di tempo t1,
+la macchina si trova in uno stato interno s1 ben determinato, risultato
+dell'elaborazione compiuta sui dati letti. 
+
+- Tra tutti i possibili stati, si distinguono:
+	-– una configurazione iniziale, per t=t0 (prima dell'esecuzione del programma)
+	-– una configurazione finale, per t=tn (al termine dell'esecuzione del programma)
+	-– delle configurazioni intermedie, per t=ti (prima dell'esecuzione dell'istruzione oi) 
+ 
+Implementare un algoritmo in questo contesto significa effettuare una delle quattro
+operazioni elementari
+– spostarsi di una casella a destra
+– spostarsi di una casella a sinistra
+– scrivere un simbolo preso da un insieme di simboli a sua disposizione su una
+casella
+– cancellare un simbolo già scritto sulla casella che sta osservando
+– oppure fermarsi. 
