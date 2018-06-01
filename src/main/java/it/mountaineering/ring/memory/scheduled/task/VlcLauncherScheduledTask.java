@@ -2,8 +2,10 @@ package it.mountaineering.ring.memory.scheduled.task;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TimerTask;
 import java.util.logging.Logger;
@@ -18,13 +20,13 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 	Date now;
 	private boolean hasStarted = false;
-	private static Map<String,File> latestFileMap;
+	private static List<File> latestFileList;
 	
 	public void run() {
 		log.info("run start!");
 		now = new Date(); // initialize date
 		this.hasStarted = true;
-		initLatestFileMap();
+		initLatestFileList();
 
 		String[] webcamArray = null;
 		webcamArray = PropertiesManager.getWebcamNames();
@@ -36,8 +38,8 @@ public class VlcLauncherScheduledTask extends TimerTask {
 		for (int i = 0; i < webcamArray.length; i++) {
 			String webcamId = webcamArray[i];
 
-			if(!latestFileMap.isEmpty()) {
-				DiskSpaceManager.addLatestFile(latestFileMap.get(webcamArray[i]));
+			if(!latestFileList.isEmpty()) {
+				DiskSpaceManager.addLatestFile(latestFileList.get(0));
 			}
 			
 			if(!DiskSpaceManager.hasEnoughMemory()) {
@@ -54,26 +56,26 @@ public class VlcLauncherScheduledTask extends TimerTask {
 			String timeStamp = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
 			String fileName = webcamId+"_"+timeStamp+".mp4";
 
-			String storageFolderFullPath = absoluteStorageFolder+relativeStorageFolder+fileName;
-
+			String storageFolderFullPath = absoluteStorageFolder + relativeStorageFolder;
 			checkFolder(storageFolderFullPath);
+
+			String storageFileFullPath = absoluteStorageFolder + relativeStorageFolder + fileName;
 
 			try {
 				Runtime.
 				   getRuntime().
-				   exec("cmd /c start \"\" test.bat "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFolderFullPath+" "+videoLength);
-				   //exec("cmd /c test.bat");
+				   exec("cmd /c start \"\" test.bat "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFileFullPath+" "+videoLength);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			latestFileMap.put(webcamId, new File(storageFolderFullPath));
+			latestFileList.add(new File(storageFileFullPath));
 		}
 	}
 
-	private static void initLatestFileMap() {
-		if (latestFileMap==null) {
-			latestFileMap = new HashMap<String,File>();
+	private static void initLatestFileList() {
+		if (latestFileList==null) {
+			latestFileList = new ArrayList<File>();
 		}
 	}
 
@@ -103,13 +105,5 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 	public void setHasStarted(boolean hasStarted) {
 		this.hasStarted = hasStarted;
-	}
-	
-	
-	public static void main(String[] args) {
-		Date d = new Date();
-		//STFW1_01-06-2018@12-35-16.62.mp4
-		String timeStamp = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
-		System.out.println(timeStamp);
 	}
 }

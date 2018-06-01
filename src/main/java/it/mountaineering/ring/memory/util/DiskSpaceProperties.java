@@ -54,4 +54,15 @@ public class DiskSpaceProperties {
 		}
 	}
 
+	public Map<Long,File> getFileMap() {
+		return fileMap;
+	}
+
+	public void mergeFileMap(Map<Long, File> fileMapToMerge) {
+		if(fileMap==null) {
+			fileMap = new LinkedHashMap<Long, File>();
+		}
+
+		fileMap.putAll(fileMapToMerge);
+	}
 }

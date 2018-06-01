@@ -2,27 +2,32 @@ package it.mountaineering.ring.memory.util;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.logging.Logger;
 
 public class DiskSpaceManager {
 
+	private static final java.util.logging.Logger log = Logger.getLogger(DiskSpaceManager.class.getName());
 	public static Map<String, Long> fileMap;
 	private static DiskSpaceProperties diskSpaceProperties;
 	public static Long size = 0L;
 
 	public static boolean hasEnoughMemory() {
+		log.info("hasEnoughMemory()");
 		String storageFolder = PropertiesManager.getAbsoluteStorageFolder();
 		File storageFile = new File(storageFolder);
-		DiskSpaceProperties diskSpaceProperties = getDiskSpaceProperties(storageFile);
+
+		if(diskSpaceProperties==null||diskSpaceProperties.getFileNumber()==0L) {
+			diskSpaceProperties = getDiskSpaceProperties(storageFile);
+		}
 
 		Long safetythreshold = calculateSafetyThreshold(diskSpaceProperties);
 		Long freeSpace = PropertiesManager.getDiskSpace() - diskSpaceProperties.getFolderSize();
 
 		if (freeSpace >= safetythreshold) {
+			log.info("freeSpace >= safetythreshold");
 			return true;
 		}
 
@@ -66,7 +71,11 @@ public class DiskSpaceManager {
 		return longSafetythreshold;
 	}
 
+	
+	
 	protected static DiskSpaceProperties getDiskSpaceProperties(File directory) {
+		log.info("init DiskSpaceProperties getDiskSpaceProperties()");
+
 		DiskSpaceProperties diskSpaceFile = new DiskSpaceProperties();
 
 		for (File file : directory.listFiles()) {
@@ -75,8 +84,10 @@ public class DiskSpaceManager {
 				diskSpaceFile.addFileNumber(1L);
 				diskSpaceFile.putFileInMap(file);
 			} else {
-				diskSpaceFile.addFolderSize(getDiskSpaceProperties(file).getFolderSize());
-				diskSpaceFile.addFileNumber(getDiskSpaceProperties(file).getFileNumber());
+				DiskSpaceProperties diskSpaceFileTemp = getDiskSpaceProperties(file);
+				diskSpaceFile.addFolderSize(diskSpaceFileTemp.getFolderSize());
+				diskSpaceFile.addFileNumber(diskSpaceFileTemp.getFileNumber());
+				diskSpaceFile.mergeFileMap(diskSpaceFileTemp.getFileMap());
 			}
 		}
 
@@ -84,6 +95,7 @@ public class DiskSpaceManager {
 	}
 
 	public static void addLatestFile(File file) {
+		log.info("addLatestFile("+file.getName()+")");
 		if(diskSpaceProperties==null) {
 			diskSpaceProperties = new DiskSpaceProperties();
 		}

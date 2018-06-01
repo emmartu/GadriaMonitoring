@@ -1,9 +1,13 @@
 package it.mountaineering.ring.memory.util;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -15,12 +19,11 @@ import it.mountaineering.ring.memory.webcam.WebcamProperty;
 public class TestVlcLauncherScheduledTask {
 
 	Date now;
-	private boolean hasStarted = false;
-	private static Map<String, File> latestFileMap;
+	private static List<File> latestFileList;
 	private static final String resourceFolder = "C:\\Users\\Lele\\workspace\\CircularMemory\\src\\test\\resources\\";
 
-	
-	public void test() {
+	@Test
+	public void runTest() {
 		String configFile = "src/test/resources/configRunTest.properties";
 		PropertiesManager.setConfigFile(configFile);
 		PropertiesManager.checkIp = false;
@@ -31,8 +34,21 @@ public class TestVlcLauncherScheduledTask {
 			e.printStackTrace();
 		}		
 
+		for(int a=0;a<=4;a++) {
+			System.out.println("runTest num = "+a);
+			test();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		assertTrue(1==1);
+	}
+
+	public void test() {
 		now = new Date(); // initialize date
-		this.hasStarted = true;
 		initLatestFileMap();
 
 		String[] webcamArray = null;
@@ -43,11 +59,14 @@ public class TestVlcLauncherScheduledTask {
 		for (int i = 0; i < webcamArray.length; i++) {
 			String webcamId = webcamArray[i];
 
-			if (!latestFileMap.isEmpty()) {
-				DiskSpaceManager.addLatestFile(latestFileMap.get(webcamArray[i]));
+			if (!latestFileList.isEmpty()) {
+				System.out.println("addLatestFile to DiskSpaceManager: "+latestFileList.get(0).getName());
+				DiskSpaceManager.addLatestFile(latestFileList.get(0));
+				latestFileList.remove(0);
 			}
 
 			if (!DiskSpaceManager.hasEnoughMemory()) {
+				System.out.println("!DiskSpaceManager.hasEnoughMemory(): deleteOldestFilesFromMemory()");
 				DiskSpaceManager.deleteOldestFilesFromMemory();
 			}
 
@@ -62,24 +81,26 @@ public class TestVlcLauncherScheduledTask {
 			String timeStamp = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
 			String fileName = webcamId + "_" + timeStamp + ".mp4";
 
-			String storageFolderFullPath = absoluteStorageFolder + relativeStorageFolder + fileName;
-
+			String storageFolderFullPath = absoluteStorageFolder + relativeStorageFolder;
 			checkFolder(storageFolderFullPath);
 
+			String storageFileFullPath = absoluteStorageFolder + relativeStorageFolder + fileName;
+
 			try {
-				UtilityForTests.createNewFile(storageFolderFullPath);
-				UtilityForTests.copyFileUsingFileStreams(new File(resourceFolder+"test.mp4"),new File(storageFolderFullPath));
+				UtilityForTests.createNewFile(storageFileFullPath);
+				UtilityForTests.copyFileUsingFileStreams(new File(resourceFolder+"test.mp4"),new File(storageFileFullPath));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			latestFileMap.put(webcamId, new File(storageFolderFullPath));
+			latestFileList.add(new File(storageFileFullPath));
 		}
+		
 	}
 
 	private static void initLatestFileMap() {
-		if (latestFileMap == null) {
-			latestFileMap = new HashMap<String, File>();
+		if (latestFileList == null) {
+			latestFileList = new ArrayList<File>();
 		}
 	}
 
@@ -96,14 +117,6 @@ public class TestVlcLauncherScheduledTask {
 		if (!directory.exists() || !directory.isDirectory()) {
 			directory.mkdir();
 		}
-	}
-
-	public boolean isHasStarted() {
-		return hasStarted;
-	}
-
-	public void setHasStarted(boolean hasStarted) {
-		this.hasStarted = hasStarted;
 	}
 
 }
