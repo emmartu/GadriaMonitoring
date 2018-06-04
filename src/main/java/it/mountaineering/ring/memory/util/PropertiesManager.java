@@ -199,6 +199,14 @@ public class PropertiesManager {
 		return webcamArray;
 	}
 	
+	public static Map<String, WebcamProperty> getEnabledWebcamPropertiesMap() {
+		return enabledWebcamPropertiesMap;
+	}
+
+	public static void setEnabledWebcamPropertiesMap(Map<String, WebcamProperty> enabledWebcamPropertiesMap) {
+		PropertiesManager.enabledWebcamPropertiesMap = enabledWebcamPropertiesMap;
+	}
+
 	public static String[] getWebcamNames() {
 		return webcamArray;
 	}

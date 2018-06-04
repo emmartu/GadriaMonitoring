@@ -100,25 +100,25 @@ public class DiskSpaceManagerTest {
 		String fileName = "w1_"+timeStamp+".txt";
 		File file = new File(filePath+fileName);
 		UtilityForTests.copyFileUsingFileStreams(testFile, file);
-		DiskSpaceManager.addLatestFile(file);
+		//DiskSpaceManager.addLatestFile(file);
 		
 		String timeStamp2 = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
 		String fileName2 = "w1_"+timeStamp2+".txt";
 		File file2 = new File(filePath+fileName2);
 		UtilityForTests.copyFileUsingFileStreams(testFile, file2);
-		DiskSpaceManager.addLatestFile(file2);
+		//DiskSpaceManager.addLatestFile(file2);
 
 		String timeStamp3 = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
 		String fileName3 = "w1_"+timeStamp3+".txt";
 		File file3 = new File(filePath+fileName3);
 		UtilityForTests.copyFileUsingFileStreams(testFile, file3);
-		DiskSpaceManager.addLatestFile(file3);
+		//DiskSpaceManager.addLatestFile(file3);
 
 		String timeStamp4 = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
 		String fileName4 = "w1_"+timeStamp4+".txt";
 		File file4 = new File(filePath+fileName4);
 		UtilityForTests.copyFileUsingFileStreams(testFile, file4);
-		DiskSpaceManager.addLatestFile(file4);
+		//DiskSpaceManager.addLatestFile(file4);
 		
 		DiskSpaceManager.deleteOldestFilesFromMemory();
 

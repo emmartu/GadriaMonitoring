@@ -20,7 +20,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 	Date now;
 	private boolean hasStarted = false;
-	private static List<File> latestFileList;
+	private static List<FileWithCreationTime> latestFileList;
 	
 	public void run() {
 		log.info("run start!");
@@ -28,15 +28,13 @@ public class VlcLauncherScheduledTask extends TimerTask {
 		this.hasStarted = true;
 		initLatestFileList();
 
-		String[] webcamArray = null;
-		webcamArray = PropertiesManager.getWebcamNames();
+		Map<String,WebcamProperty> enabledWebcamPropertiesMap = PropertiesManager.getEnabledWebcamPropertiesMap();
 
 		String absoluteStorageFolder = PropertiesManager.getAbsoluteStorageFolder();
 		Long videoLength = 0L;
 		videoLength = PropertiesManager.getVideoLength();
 
-		for (int i = 0; i < webcamArray.length; i++) {
-			String webcamId = webcamArray[i];
+		for (String webcamId : enabledWebcamPropertiesMap.keySet()){
 
 			if(!latestFileList.isEmpty()) {
 				DiskSpaceManager.addLatestFile(latestFileList.get(0));
@@ -46,8 +44,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 				DiskSpaceManager.deleteOldestFilesFromMemory();
 			}
 
-			WebcamProperty webcamProperty = null;
-			webcamProperty = PropertiesManager.getWebcamPropertyById(webcamId);
+			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
 			log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getRelativeStorageFolder());
 
 			String relativeStorageFolder = webcamProperty.getRelativeStorageFolder();
@@ -61,21 +58,24 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 			String storageFileFullPath = absoluteStorageFolder + relativeStorageFolder + fileName;
 
+			long latestFileCreationTime = System.currentTimeMillis() % 1000;
+			
 			try {
 				Runtime.
 				   getRuntime().
-				   exec("cmd /c start \"\" test.bat "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFileFullPath+" "+videoLength);
+				   exec("cmd /c start /B \"\" test.bat "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFileFullPath+" "+videoLength);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			latestFileList.add(new File(storageFileFullPath));
+			FileWithCreationTime fileWithCreationTime = new FileWithCreationTime(storageFileFullPath, latestFileCreationTime);
+			latestFileList.add(fileWithCreationTime);
 		}
 	}
 
 	private static void initLatestFileList() {
 		if (latestFileList==null) {
-			latestFileList = new ArrayList<File>();
+			latestFileList = new ArrayList<FileWithCreationTime>();
 		}
 	}
 

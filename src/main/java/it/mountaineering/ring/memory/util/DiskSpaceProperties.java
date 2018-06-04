@@ -7,11 +7,20 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import it.mountaineering.ring.memory.scheduled.task.FileWithCreationTime;
+
 public class DiskSpaceProperties {
 
-	Long folderSize = 0L;
-	Long fileNumber = 0L;
+
+	Long folderSize;
+	Long fileNumber;
 	Map<Long,File> fileMap;
+	
+	public DiskSpaceProperties() {
+		folderSize = 0L;
+		fileNumber = 0L;
+		fileMap = new LinkedHashMap<Long,File>();
+	}
 
 	public Long getFolderSize() {
 		return folderSize;
@@ -37,12 +46,12 @@ public class DiskSpaceProperties {
 		this.fileNumber += fileCount;		
 	}
 
-	public void putFileInMap(File file) {
+	public void putFileInMap(FileWithCreationTime fileWithCreationTime) {
 		if(fileMap==null) {
 			fileMap = new LinkedHashMap<Long, File>();
 		}
 		
-		fileMap.put(getFileCreationEpoch(file), file);
+		fileMap.put(fileWithCreationTime.getCreationTime(), fileWithCreationTime.getFile());
 	}
 	
 	private long getFileCreationEpoch(File file) {

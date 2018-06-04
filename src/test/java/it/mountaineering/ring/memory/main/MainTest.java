@@ -1,9 +1,6 @@
 package it.mountaineering.ring.memory.main;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
-import org.junit.Test;
 
 public class MainTest {
 
@@ -15,21 +12,4 @@ public class MainTest {
 		//mainToTest.
 	}
 	
-	@Test
-	public void testIsDiskSpaceAvailable() {
-		boolean hasSpace = mainToTest.isDiskSpaceAvailable();
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetFolderSpace() {
-		mainToTest.getFolderSpace();
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFolderCreatedDate() {
-		fail("Not yet implemented");
-	}
-
 }

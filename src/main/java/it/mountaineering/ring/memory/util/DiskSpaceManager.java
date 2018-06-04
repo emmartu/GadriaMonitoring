@@ -1,11 +1,16 @@
 package it.mountaineering.ring.memory.util;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import it.mountaineering.ring.memory.scheduled.task.FileWithCreationTime;
 
 public class DiskSpaceManager {
 
@@ -82,7 +87,8 @@ public class DiskSpaceManager {
 			if (file.isFile()) {
 				diskSpaceFile.addFolderSize(file.length());
 				diskSpaceFile.addFileNumber(1L);
-				diskSpaceFile.putFileInMap(file);
+				FileWithCreationTime fileWithCreationTime = new FileWithCreationTime(file.getAbsolutePath(), getFileCreationEpoch(file));
+				diskSpaceFile.putFileInMap(fileWithCreationTime);
 			} else {
 				DiskSpaceProperties diskSpaceFileTemp = getDiskSpaceProperties(file);
 				diskSpaceFile.addFolderSize(diskSpaceFileTemp.getFolderSize());
@@ -94,15 +100,25 @@ public class DiskSpaceManager {
 		return diskSpaceFile;
 	}
 
-	public static void addLatestFile(File file) {
-		log.info("addLatestFile("+file.getName()+")");
+	public static void addLatestFile(FileWithCreationTime fileWithCreationTime) {
+		log.info("addLatestFile("+fileWithCreationTime.getFile().getName()+")");
 		if(diskSpaceProperties==null) {
 			diskSpaceProperties = new DiskSpaceProperties();
 		}
 
 		diskSpaceProperties.addFileNumber(1L);
-		diskSpaceProperties.addFolderSize(file.length());
-		diskSpaceProperties.putFileInMap(file);
+		diskSpaceProperties.addFolderSize(fileWithCreationTime.getFile().length());
+		diskSpaceProperties.putFileInMap(fileWithCreationTime);
+	}
+
+	
+	private static long getFileCreationEpoch(File file) {
+		try {
+			BasicFileAttributes attr = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
+			return attr.creationTime().toInstant().toEpochMilli();
+		} catch (IOException e) {
+			throw new RuntimeException(file.getAbsolutePath(), e);
+		}
 	}
 
 }

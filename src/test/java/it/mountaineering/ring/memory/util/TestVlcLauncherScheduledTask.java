@@ -61,7 +61,7 @@ public class TestVlcLauncherScheduledTask {
 
 			if (!latestFileList.isEmpty()) {
 				System.out.println("addLatestFile to DiskSpaceManager: "+latestFileList.get(0).getName());
-				DiskSpaceManager.addLatestFile(latestFileList.get(0));
+				//DiskSpaceManager.addLatestFile(latestFileList.get(0));
 				latestFileList.remove(0);
 			}
 

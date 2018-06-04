@@ -15,4 +15,4 @@ echo %STREAM_PATH%
 echo %STORAGE_PATH%
 echo %RECORD_TIME%
 
-rem "C:\Program Files\VideoLAN\VLC\vlc.exe" -I dummy --run-time=%RECORD_TIME% --live-caching 2000 --avformat-format=mxg %STREAM_PATH% --sout="#transcode{vcodec=h264,acodec=none}:duplicate{dst=std{access=file,mux=mp4, dst='%STORAGE_PATH%'},dst=nodisplay}" vlc://quit
+"C:\Program Files\VideoLAN\VLC\vlc.exe" -I dummy --run-time=%RECORD_TIME% --avformat-format=mxg %STREAM_PATH% --sout="#transcode{vcodec=h264,acodec=none}:duplicate{dst=std{access=file,mux=mp4, dst='%STORAGE_PATH%'},dst=nodisplay}" vlc://quit
