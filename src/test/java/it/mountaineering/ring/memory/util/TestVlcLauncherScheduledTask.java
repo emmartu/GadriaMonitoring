@@ -24,7 +24,7 @@ public class TestVlcLauncherScheduledTask {
 	private static DiskSpaceManager diskSPaceManager;
 	
 	{
-		diskSPaceManager = new DiskSpaceManager();
+		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
 	}
 
 
@@ -71,7 +71,7 @@ public class TestVlcLauncherScheduledTask {
 				latestFileList.remove(0);
 			}
 
-			if (!diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder())) {
+			if (!diskSPaceManager.hasEnoughMemory()) {
 				System.out.println("!DiskSpaceManager.hasEnoughMemory(): deleteOldestFilesFromMemory()");
 				diskSPaceManager.deleteOldestFilesFromMemory();
 			}

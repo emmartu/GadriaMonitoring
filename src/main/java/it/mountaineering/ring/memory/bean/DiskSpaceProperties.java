@@ -36,8 +36,16 @@ public class DiskSpaceProperties {
 		this.folderSize += length;		
 	}
 
+	public void removeFolderSize(long length) {
+		this.folderSize -= length;		
+	}
+
 	public void addFileNumber(Long fileCount) {
 		this.fileNumber += fileCount;		
+	}
+
+	public void removeFileNumber(Long fileCount) {
+		this.fileNumber -= fileCount;		
 	}
 
 	public void putFileInMap(FileWithCreationTime fileWithCreationTime) {

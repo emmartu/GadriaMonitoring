@@ -89,27 +89,31 @@ public class PropertiesManager {
 
 		String videoAbsoluteStorageFolder = getVideoAbsoluteStorageFolderFromConfigProperties();
 		log.info("VideoAbsoluteStorageFolder: " + videoAbsoluteStorageFolder);
-		propertiesMap.put("VideoAbsoluteStorageFolder", videoAbsoluteStorageFolder);
+		propertiesMap.put(VIDEO_ABSOLUTE_STORAGE_FOLDER, videoAbsoluteStorageFolder);
 
 		String pictureAbsoluteStorageFolder = getPictureAbsoluteStorageFolderFromConfigProperties();
 		log.info("PictureAbsoluteStorageFolder: " + pictureAbsoluteStorageFolder);
-		propertiesMap.put("PictureAbsoluteStorageFolder", pictureAbsoluteStorageFolder);
+		propertiesMap.put(PICTURE_ABSOLUTE_STORAGE_FOLDER, pictureAbsoluteStorageFolder);
 
-		Long diskSpace = getVideoMaxDiskSpaceFromConfigProperties();
-		log.info("DiskSpace: " + diskSpace);
-		propertiesMap.put("DiskSpace", String.valueOf(diskSpace));
+		Long videoMaxDiskSpace = getVideoMaxDiskSpaceFromConfigProperties();
+		log.info("VideoMaxDiskSpace: " + videoMaxDiskSpace);
+		propertiesMap.put(VIDEO_MAX_DISK_SPACE, String.valueOf(videoMaxDiskSpace));
+
+		Long pictureMaxDiskSpace = getPictureMaxDiskSpaceFromConfigProperties();
+		log.info("PictureMaxDiskSpace: " + pictureMaxDiskSpace);
+		propertiesMap.put(PICTURE_MAX_DISK_SPACE, String.valueOf(pictureMaxDiskSpace));
 
 		Long videoLength = getVideoLengthFromConfigProperties();
 		log.info("VideoLength: " + videoLength);
-		propertiesMap.put("VideoLength", String.valueOf(videoLength));
+		propertiesMap.put(VIDEO_LENGTH, String.valueOf(videoLength));
 
 		Long overlap = getOverlapFromConfigProperties();
 		log.info("Overlap: " + overlap);
-		propertiesMap.put("Overlap", String.valueOf(overlap));
+		propertiesMap.put(OVERLAP, String.valueOf(overlap));
 
 		Long pictureInterval = getPictureIntervalFromConfigProperties();
 		log.info("PictureInterval: " + pictureInterval);
-		propertiesMap.put("PictureInterval", String.valueOf(pictureInterval));
+		propertiesMap.put(PICTURE_INTERVAL, String.valueOf(pictureInterval));
 
 		try {
 			webcamArray = getWebcamNamesFromConfigProperties();
@@ -226,6 +230,15 @@ public class PropertiesManager {
 
 		return diskSpace;
 	}
+
+	public static Long getPictureMaxDiskSpace() {
+		String pictureMaxDiskSpaceStr = propertiesMap.get(PICTURE_MAX_DISK_SPACE);
+
+		Long diskSpace = Long.parseLong(pictureMaxDiskSpaceStr);
+
+		return diskSpace;
+	}
+
 
 	public static Long getVideoMaxDiskSpace() {
 		String videoMaxDiskSpaceStr = propertiesMap.get(VIDEO_MAX_DISK_SPACE);

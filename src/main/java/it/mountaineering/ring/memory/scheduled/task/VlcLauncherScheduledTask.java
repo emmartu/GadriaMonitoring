@@ -20,7 +20,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	private static DiskSpaceManager diskSPaceManager;
 	
 	{
-		diskSPaceManager = new DiskSpaceManager();
+		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
 		log.info("diskSPaceManager creation");
 	}
 
@@ -46,7 +46,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 				diskSPaceManager.addLatestFile(latestFileList.get(0));
 			}
 			
-			if(!diskSPaceManager.hasEnoughMemory(absoluteStorageFolder)) {
+			if(!diskSPaceManager.hasEnoughMemory()) {
 				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
 

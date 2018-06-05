@@ -34,9 +34,9 @@ public class Main {
 			log.info("the application has been stopped");
 			return;
 		}
-		
-		main.launchVlcScheduledTasks();
+
 		main.launchPictureTakerScheduledTasks();
+		main.launchVlcScheduledTasks();
 	}
 	
 	private void setupProperties() throws PropertiesException {

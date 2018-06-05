@@ -16,9 +16,16 @@ public class DiskSpaceManager {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(DiskSpaceManager.class.getName());
 	private DiskSpaceProperties diskSpaceProperties;
+	String storageFolder;
+	Long maxDiskSpace;
 	public Long size = 0L;
 	
-	public boolean hasEnoughMemory(String storageFolder) {
+	public DiskSpaceManager(String storageFolder, Long maxDiskSpace) {
+		this.storageFolder = storageFolder;
+		this.maxDiskSpace = maxDiskSpace;
+	}
+
+	public boolean hasEnoughMemory() {
 		log.info("hasEnoughMemory()");
 		File storageFile = new File(storageFolder);
 
@@ -27,7 +34,7 @@ public class DiskSpaceManager {
 		}
 
 		Long safetythreshold = calculateSafetyThreshold(diskSpaceProperties);
-		Long freeSpace = PropertiesManager.getVideoMaxDiskSpace() - diskSpaceProperties.getFolderSize();
+		Long freeSpace = maxDiskSpace - diskSpaceProperties.getFolderSize();
 
 		if (freeSpace >= safetythreshold) {
 			log.info("freeSpace >= safetythreshold");
@@ -42,12 +49,13 @@ public class DiskSpaceManager {
 		Collection<Long> unsortedEpochList = diskSpaceProperties.getFileMap().keySet();
 		List<Long> sorted = asSortedList(unsortedEpochList);
 		Long firstItem = sorted.get(0);
-
 		File file = diskSpaceProperties.getFileMap().get(firstItem);
 
-		diskSpaceProperties.getFileMap().remove(firstItem);
-		
 		if (file.isFile()) {
+			Long size = file.length();
+			diskSpaceProperties.removeFolderSize(size);
+			diskSpaceProperties.removeFileNumber(1L);
+			diskSpaceProperties.getFileMap().remove(firstItem);
 			file.delete();
 		}else{
 			deleteOldestFilesFromMemory();

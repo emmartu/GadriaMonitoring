@@ -25,7 +25,8 @@ public class CurrentPictureTakerTask extends TimerTask {
 	private static DiskSpaceManager diskSPaceManager;
 	
 	{
-		diskSPaceManager = new DiskSpaceManager();
+		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getPictureAbsoluteStorageFolder(), PropertiesManager.getPictureMaxDiskSpace());
+		log.info("diskSPaceManager creation");
 	}
 	
 	Date now;
@@ -48,7 +49,7 @@ public class CurrentPictureTakerTask extends TimerTask {
 				diskSPaceManager.addLatestFile(latestFileList.get(0));
 			}
 			
-			if(!diskSPaceManager.hasEnoughMemory(pictureAbsoluteStorageFolder)) {
+			while(!diskSPaceManager.hasEnoughMemory()) {
 				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
 
