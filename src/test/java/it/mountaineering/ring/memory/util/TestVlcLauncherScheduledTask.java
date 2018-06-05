@@ -9,25 +9,29 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 
+import it.mountaineering.ring.memory.bean.FileWithCreationTime;
 import it.mountaineering.ring.memory.bean.WebcamProperty;
 import it.mountaineering.ring.memory.exception.PropertiesException;
+import it.mountaineering.ring.memory.scheduled.task.VlcLauncherScheduledTask;
 import it.mountaineering.ring.memory.util.DiskSpaceManager;
 
 public class TestVlcLauncherScheduledTask {
 
-	Date now;
-	private static List<File> latestFileList;
-	private static final String resourceFolder = "C:\\Users\\Lele\\workspace\\CircularMemory\\src\\test\\resources\\";
+	private static final String VLC_VIDEO_RECORDER_BAT = "VlcVideoRecorder.bat";
 	private static DiskSpaceManager diskSPaceManager;
 	
 	{
 		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
 	}
 
-
+	Date now;
+	private boolean hasStarted = false;
+	private static List<FileWithCreationTime> latestFileList;
+	
 	@Test
 	public void runTest() {
 		String configFile = "src/test/resources/configRunTest.properties";
@@ -66,12 +70,12 @@ public class TestVlcLauncherScheduledTask {
 			String webcamId = webcamArray[i];
 
 			if (!latestFileList.isEmpty()) {
-				System.out.println("addLatestFile to DiskSpaceManager: "+latestFileList.get(0).getName());
+				//System.out.println("addLatestFile to DiskSpaceManager: "+latestFileList.get(0).getName());
 				//DiskSpaceManager.addLatestFile(latestFileList.get(0));
 				latestFileList.remove(0);
 			}
 
-			if (!diskSPaceManager.hasEnoughMemory()) {
+			while (!diskSPaceManager.hasEnoughMemory()) {
 				System.out.println("!DiskSpaceManager.hasEnoughMemory(): deleteOldestFilesFromMemory()");
 				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
@@ -94,19 +98,19 @@ public class TestVlcLauncherScheduledTask {
 
 			try {
 				UtilityForTests.createNewFile(storageFileFullPath);
-				UtilityForTests.copyFileUsingFileStreams(new File(resourceFolder+"test.mp4"),new File(storageFileFullPath));
+				//UtilityForTests.copyFileUsingFileStreams(new File(resourceFolder+"test.mp4"),new File(storageFileFullPath));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			latestFileList.add(new File(storageFileFullPath));
+			//latestFileList.add(new File(storageFileFullPath));
 		}
 		
 	}
 
 	private static void initLatestFileMap() {
 		if (latestFileList == null) {
-			latestFileList = new ArrayList<File>();
+			//latestFileList = new ArrayList<File>();
 		}
 	}
 

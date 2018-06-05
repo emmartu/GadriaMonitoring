@@ -1,8 +1,12 @@
 package it.mountaineering.ring.memory.main;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Timer;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import it.mountaineering.ring.memory.exception.PropertiesException;
 import it.mountaineering.ring.memory.scheduled.task.CurrentPictureTakerTask;
@@ -26,7 +30,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-
+		//main.setUpLogger();
 		try {
 			main.setupProperties();
 		} catch (PropertiesException e) {
@@ -35,8 +39,32 @@ public class Main {
 			return;
 		}
 
-		main.launchPictureTakerScheduledTasks();
-		main.launchVlcScheduledTasks();
+		if(PropertiesManager.isPictureCaptureEnabled()) {
+			main.launchPictureTakerScheduledTasks();			
+		}
+		
+		if(PropertiesManager.isVideoCaptureEnabled()) {
+			main.launchVlcScheduledTasks();			
+		}
+	}
+	
+	private void setUpLogger() {
+	    FileHandler fileHandler = null;
+
+	    try {
+			fileHandler = new FileHandler(".\\MyLogFile.log", true);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	    log.addHandler(fileHandler);
+	    log.setLevel(Level.ALL);
+	    SimpleFormatter formatter = new SimpleFormatter();
+	    fileHandler.setFormatter(formatter);
+
+	    log.log(Level.WARNING, "My first log");
 	}
 	
 	private void setupProperties() throws PropertiesException {

@@ -17,6 +17,7 @@ import it.mountaineering.ring.memory.util.PropertiesManager;
 public class VlcLauncherScheduledTask extends TimerTask {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(VlcLauncherScheduledTask.class.getName());
+	private static final String VLC_VIDEO_RECORDER_BAT = "VlcVideoRecorder.bat";
 	private static DiskSpaceManager diskSPaceManager;
 	
 	{
@@ -46,7 +47,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 				diskSPaceManager.addLatestFile(latestFileList.get(0));
 			}
 			
-			if(!diskSPaceManager.hasEnoughMemory()) {
+			while(!diskSPaceManager.hasEnoughMemory()) {
 				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
 
@@ -64,12 +65,15 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 			String storageFileFullPath = absoluteStorageFolder + relativeStorageFolder + fileName;
 
-			long latestFileCreationTime = System.currentTimeMillis() % 1000;
+			long latestFileCreationTime = System.currentTimeMillis();
+			
+			String videoLanExePath = PropertiesManager.getVideoLanExePath();
+			log.info("videoLanExePath: "+videoLanExePath);
 			
 			try {
 				Runtime.
 				   getRuntime().
-				   exec("cmd /c start /B \"\" test.bat "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFileFullPath+" "+videoLength);
+				   exec("cmd /c start /B \"\" "+VLC_VIDEO_RECORDER_BAT+" "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFileFullPath+" "+videoLength+" \""+videoLanExePath+"\"");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

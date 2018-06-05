@@ -37,6 +37,9 @@ public class PropertiesManager {
 	private static final String _IP = "_ip";
 	private static final String TRUE_STRING = "true";
 	private static final String FALSE_STRING = "false";
+	private static final String VIDEO_CAPTURE_ENABLED = "VideoCaptureEnabled";
+	private static final String PICTURE_CAPTURE_ENABLED = "PictureCaptureEnabled";
+	private static final String VIDEOLAN_EXE_PATH = "VideoLanExePath";
 
 	protected static Map<String, String> propertiesMap = new HashMap<String, String>();
 	protected static Map<String, WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
@@ -86,6 +89,18 @@ public class PropertiesManager {
 		log.info("***********************************************");
 		log.info("**** Get Properties From config.properties ****");
 		log.info("***********************************************");
+		
+		String videoCaptureEnabled = getVideoCaptureEnabledFromConfigProperties();
+		log.info("VideoCaptureEnabled: " + videoCaptureEnabled);
+		propertiesMap.put(VIDEO_CAPTURE_ENABLED, videoCaptureEnabled);
+
+		String videoLanExePath = getVideoLanExePathFromConfigProperties();
+		log.info("videoLanExePath: " + videoLanExePath);
+		propertiesMap.put(VIDEOLAN_EXE_PATH, videoLanExePath);
+
+		String pictureCaptureEnabled = getPictureCaptureEnabledFromConfigProperties();
+		log.info("PictureCaptureEnabled: " + pictureCaptureEnabled);
+		propertiesMap.put(PICTURE_CAPTURE_ENABLED, pictureCaptureEnabled);
 
 		String videoAbsoluteStorageFolder = getVideoAbsoluteStorageFolderFromConfigProperties();
 		log.info("VideoAbsoluteStorageFolder: " + videoAbsoluteStorageFolder);
@@ -175,6 +190,14 @@ public class PropertiesManager {
 		return propertyNumber;
 	}
 
+	private static String getVideoLanExePathFromConfigProperties() throws PropertiesException {
+		String videoLanExePath = "";
+
+		videoLanExePath = getStringPropertyByName(VIDEOLAN_EXE_PATH);
+
+		return videoLanExePath;
+	}
+
 	protected static String getVideoAbsoluteStorageFolderFromConfigProperties() throws PropertiesException {
 		String storageFolder = "";
 
@@ -204,6 +227,11 @@ public class PropertiesManager {
 
 		return storageFolder;
 	}
+
+	public static String getVideoLanExePath() {
+		return propertiesMap.get(VIDEOLAN_EXE_PATH);
+	}
+
 
 	public static String getVideoAbsoluteStorageFolder() {
 		return propertiesMap.get(VIDEO_ABSOLUTE_STORAGE_FOLDER);
@@ -326,6 +354,53 @@ public class PropertiesManager {
 		Long pictureInterval = Long.parseLong(pictureIntervalStr);
 
 		return pictureInterval;
+	}
+
+	private static String getPictureCaptureEnabledFromConfigProperties() throws WebcamPropertyIDException {
+		String enabledStr;
+
+		enabledStr = prop.getProperty(PICTURE_CAPTURE_ENABLED);
+		if (enabledStr == null || enabledStr.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot Read Property " + PICTURE_CAPTURE_ENABLED + ", property is null");
+		}
+
+		if (!isValidBooleanString(enabledStr)) {
+			throw new BooleanStringPropertyException("");
+		}
+
+		return enabledStr;
+	}
+
+	public static boolean isPictureCaptureEnabled() {
+		String pictureCaptureEnabledStr = propertiesMap.get(PICTURE_CAPTURE_ENABLED);
+
+		boolean pictureCaptureEnabled = Boolean.parseBoolean(pictureCaptureEnabledStr);
+
+		return pictureCaptureEnabled;
+	}
+
+
+	private static String getVideoCaptureEnabledFromConfigProperties() throws WebcamPropertyIDException {
+		String enabledStr;
+
+		enabledStr = prop.getProperty(VIDEO_CAPTURE_ENABLED);
+		if (enabledStr == null || enabledStr.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot Read Property " + VIDEO_CAPTURE_ENABLED + ", property is null");
+		}
+
+		if (!isValidBooleanString(enabledStr)) {
+			throw new BooleanStringPropertyException("");
+		}
+
+		return enabledStr;
+	}
+
+	public static boolean isVideoCaptureEnabled() {
+		String videoCaptureEnabledStr = propertiesMap.get(VIDEO_CAPTURE_ENABLED);
+
+		boolean videoCaptureEnabled = Boolean.parseBoolean(videoCaptureEnabledStr);
+
+		return videoCaptureEnabled;
 	}
 
 	public static WebcamProperty getWebcamPropertyById(String webcamId) {

@@ -67,7 +67,7 @@ public class CurrentPictureTakerTask extends TimerTask {
 
 			String storageFileFullPath = pictureAbsoluteStorageFolder + relativeStorageFolder + fileName;
 
-			long latestFileCreationTime = System.currentTimeMillis() % 1000;
+			long latestFileCreationTime = System.currentTimeMillis();
 			
 			String imageUrl = "http://"+webcamProperty.getIp()+"/record/current.jpg";
 			
