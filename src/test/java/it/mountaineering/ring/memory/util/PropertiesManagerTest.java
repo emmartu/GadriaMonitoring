@@ -10,10 +10,10 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.mountaineering.ring.memory.bean.WebcamProperty;
 import it.mountaineering.ring.memory.exception.CSVFormatPropertiesException;
 import it.mountaineering.ring.memory.exception.NumberFormatPropertiesException;
 import it.mountaineering.ring.memory.exception.PropertiesException;
-import it.mountaineering.ring.memory.webcam.WebcamProperty;
 
 public class PropertiesManagerTest {
 
@@ -37,14 +37,14 @@ public class PropertiesManagerTest {
 		w1WebcamProperty.setEnabled(false);
 		w1WebcamProperty.setiD("w1");
 		w1WebcamProperty.setIp("111.0.0.1");
-		w1WebcamProperty.setRelativeStorageFolder("W1");
+		w1WebcamProperty.setVideoRelativeStorageFolder("W1");
 		webcamPropertiesMap.put("w1", w1WebcamProperty);
 		
 		WebcamProperty w2WebcamProperty = new WebcamProperty();
 		w2WebcamProperty.setEnabled(false);
 		w2WebcamProperty.setiD("w2");
 		w2WebcamProperty.setIp("111.0.0.2");
-		w2WebcamProperty.setRelativeStorageFolder("W2");
+		w2WebcamProperty.setVideoRelativeStorageFolder("W2");
 		webcamPropertiesMap.put("w2", w2WebcamProperty);
 
 	}
@@ -59,7 +59,7 @@ public class PropertiesManagerTest {
 		String configFile = "src/test/resources/configFailAbsFolder_A.properties";
 		PropertiesManager.setConfigFile(configFile);
 		
-		String storageFolder = PropertiesManager.getAbsoluteStorageFolderFromConfigProperties();
+		String storageFolder = PropertiesManager.getVideoAbsoluteStorageFolderFromConfigProperties();
 	}
 
 	@Test(expected = PropertiesException.class)
@@ -67,7 +67,7 @@ public class PropertiesManagerTest {
 		String configFile = "src/test/resources/configFailAbsFolder_B.properties";
 		PropertiesManager.setConfigFile(configFile);
 		
-		String storageFolder = PropertiesManager.getAbsoluteStorageFolderFromConfigProperties();
+		String storageFolder = PropertiesManager.getVideoAbsoluteStorageFolderFromConfigProperties();
 	}
 
 	@Test(expected = NumberFormatPropertiesException.class)
@@ -75,7 +75,7 @@ public class PropertiesManagerTest {
 		String configFile = "src/test/resources/configFailA.properties";
 		PropertiesManager.setConfigFile(configFile);
 		
-		Long diskSpace = PropertiesManager.getDiskSpaceFromConfigProperties();
+		Long diskSpace = PropertiesManager.getVideoMaxDiskSpaceFromConfigProperties();
 	}
 
 	@Test(expected = PropertiesException.class)
@@ -83,7 +83,7 @@ public class PropertiesManagerTest {
 		String configFile = "src/test/resources/configFailB.properties";
 		PropertiesManager.setConfigFile(configFile);
 		
-		Long diskSpace = PropertiesManager.getDiskSpaceFromConfigProperties();
+		Long diskSpace = PropertiesManager.getVideoMaxDiskSpaceFromConfigProperties();
 	}
 
 	@Test(expected = NumberFormatPropertiesException.class)

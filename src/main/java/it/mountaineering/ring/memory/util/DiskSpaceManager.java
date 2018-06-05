@@ -7,21 +7,19 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
-import it.mountaineering.ring.memory.scheduled.task.FileWithCreationTime;
+import it.mountaineering.ring.memory.bean.DiskSpaceProperties;
+import it.mountaineering.ring.memory.bean.FileWithCreationTime;
 
 public class DiskSpaceManager {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(DiskSpaceManager.class.getName());
-	public static Map<String, Long> fileMap;
-	private static DiskSpaceProperties diskSpaceProperties;
-	public static Long size = 0L;
-
-	public static boolean hasEnoughMemory() {
+	private DiskSpaceProperties diskSpaceProperties;
+	public Long size = 0L;
+	
+	public boolean hasEnoughMemory(String storageFolder) {
 		log.info("hasEnoughMemory()");
-		String storageFolder = PropertiesManager.getAbsoluteStorageFolder();
 		File storageFile = new File(storageFolder);
 
 		if(diskSpaceProperties==null||diskSpaceProperties.getFileNumber()==0L) {
@@ -29,7 +27,7 @@ public class DiskSpaceManager {
 		}
 
 		Long safetythreshold = calculateSafetyThreshold(diskSpaceProperties);
-		Long freeSpace = PropertiesManager.getDiskSpace() - diskSpaceProperties.getFolderSize();
+		Long freeSpace = PropertiesManager.getVideoMaxDiskSpace() - diskSpaceProperties.getFolderSize();
 
 		if (freeSpace >= safetythreshold) {
 			log.info("freeSpace >= safetythreshold");
@@ -39,15 +37,15 @@ public class DiskSpaceManager {
 		return false;
 	}
 
-	public static void deleteOldestFilesFromMemory() {
+	public void deleteOldestFilesFromMemory() {
 		
-		Collection<Long> unsortedEpochList = diskSpaceProperties.fileMap.keySet();
+		Collection<Long> unsortedEpochList = diskSpaceProperties.getFileMap().keySet();
 		List<Long> sorted = asSortedList(unsortedEpochList);
 		Long firstItem = sorted.get(0);
 
-		File file = diskSpaceProperties.fileMap.get(firstItem);
+		File file = diskSpaceProperties.getFileMap().get(firstItem);
 
-		diskSpaceProperties.fileMap.remove(firstItem);
+		diskSpaceProperties.getFileMap().remove(firstItem);
 		
 		if (file.isFile()) {
 			file.delete();
@@ -56,13 +54,13 @@ public class DiskSpaceManager {
 		}
 	}
 
-	private static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+	private <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
 	  List<T> list = new ArrayList<T>(c);
 	  java.util.Collections.sort(list);
 	  return list;
 	}
 
-	protected static Long calculateSafetyThreshold(DiskSpaceProperties diskSpaceProperties) {
+	protected Long calculateSafetyThreshold(DiskSpaceProperties diskSpaceProperties) {
 		Double safetythreshold = new Double(0);
 		Double folderSize = new Double(diskSpaceProperties.getFolderSize());
 
@@ -78,7 +76,7 @@ public class DiskSpaceManager {
 
 	
 	
-	protected static DiskSpaceProperties getDiskSpaceProperties(File directory) {
+	protected DiskSpaceProperties getDiskSpaceProperties(File directory) {
 		log.info("init DiskSpaceProperties getDiskSpaceProperties()");
 
 		DiskSpaceProperties diskSpaceFile = new DiskSpaceProperties();
@@ -100,7 +98,7 @@ public class DiskSpaceManager {
 		return diskSpaceFile;
 	}
 
-	public static void addLatestFile(FileWithCreationTime fileWithCreationTime) {
+	public void addLatestFile(FileWithCreationTime fileWithCreationTime) {
 		log.info("addLatestFile("+fileWithCreationTime.getFile().getName()+")");
 		if(diskSpaceProperties==null) {
 			diskSpaceProperties = new DiskSpaceProperties();
@@ -112,7 +110,7 @@ public class DiskSpaceManager {
 	}
 
 	
-	private static long getFileCreationEpoch(File file) {
+	private long getFileCreationEpoch(File file) {
 		try {
 			BasicFileAttributes attr = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
 			return attr.creationTime().toInstant().toEpochMilli();

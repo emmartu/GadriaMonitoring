@@ -4,19 +4,25 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 
+import it.mountaineering.ring.memory.bean.FileWithCreationTime;
+import it.mountaineering.ring.memory.bean.WebcamProperty;
 import it.mountaineering.ring.memory.util.DiskSpaceManager;
 import it.mountaineering.ring.memory.util.PropertiesManager;
-import it.mountaineering.ring.memory.webcam.WebcamProperty;
 
 public class VlcLauncherScheduledTask extends TimerTask {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(VlcLauncherScheduledTask.class.getName());
+	private static DiskSpaceManager diskSPaceManager;
+	
+	{
+		diskSPaceManager = new DiskSpaceManager();
+		log.info("diskSPaceManager creation");
+	}
 
 	Date now;
 	private boolean hasStarted = false;
@@ -30,24 +36,24 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 		Map<String,WebcamProperty> enabledWebcamPropertiesMap = PropertiesManager.getEnabledWebcamPropertiesMap();
 
-		String absoluteStorageFolder = PropertiesManager.getAbsoluteStorageFolder();
+		String absoluteStorageFolder = PropertiesManager.getVideoAbsoluteStorageFolder();
 		Long videoLength = 0L;
 		videoLength = PropertiesManager.getVideoLength();
 
 		for (String webcamId : enabledWebcamPropertiesMap.keySet()){
 
 			if(!latestFileList.isEmpty()) {
-				DiskSpaceManager.addLatestFile(latestFileList.get(0));
+				diskSPaceManager.addLatestFile(latestFileList.get(0));
 			}
 			
-			if(!DiskSpaceManager.hasEnoughMemory()) {
-				DiskSpaceManager.deleteOldestFilesFromMemory();
+			if(!diskSPaceManager.hasEnoughMemory(absoluteStorageFolder)) {
+				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
 
 			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
-			log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getRelativeStorageFolder());
+			log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
 
-			String relativeStorageFolder = webcamProperty.getRelativeStorageFolder();
+			String relativeStorageFolder = webcamProperty.getVideoRelativeStorageFolder();
 			absoluteStorageFolder = checkSlashesOnPath(absoluteStorageFolder);
 			relativeStorageFolder = checkSlashesOnPath(relativeStorageFolder);
 			String timeStamp = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());

@@ -10,30 +10,46 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import it.mountaineering.ring.memory.bean.WebcamProperty;
 import it.mountaineering.ring.memory.exception.BooleanStringPropertyException;
 import it.mountaineering.ring.memory.exception.CSVFormatPropertiesException;
 import it.mountaineering.ring.memory.exception.NumberFormatPropertiesException;
 import it.mountaineering.ring.memory.exception.PropertiesException;
 import it.mountaineering.ring.memory.exception.UnreachableIpException;
 import it.mountaineering.ring.memory.exception.WebcamPropertyIDException;
-import it.mountaineering.ring.memory.webcam.WebcamProperty;
 
 public class PropertiesManager {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(PropertiesManager.class.getName());
 
-	protected static Map<String,String> propertiesMap = new HashMap<String, String>();
-	protected static Map<String,WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
-	protected static Map<String,WebcamProperty> enabledWebcamPropertiesMap = new HashMap<String, WebcamProperty>();
+	private static final String CONFIG_PROPERTIES = "config.properties";
+	private static final String VIDEO_ABSOLUTE_STORAGE_FOLDER = "VideoAbsoluteStorageFolder";
+	private static final String PICTURE_ABSOLUTE_STORAGE_FOLDER = "PictureAbsoluteStorageFolder";
+	private static final String VIDEO_MAX_DISK_SPACE = "VideoMaxDiskSpace";
+	private static final String PICTURE_MAX_DISK_SPACE = "PictureMaxDiskSpace";
+	private static final String WEBCAM_ID = "WebCams";
+	private static final String VIDEO_LENGTH = "VideoLength";
+	private static final String OVERLAP = "Overlap";
+	private static final String PICTURE_INTERVAL = "PictureInterval";
+	private static final String _ENABLED = "_enabled";
+	private static final String _VIDEO_RELATIVE_STORE = "_videoRelativeStore";
+	private static final String _PICTURE_RELATIVE_STORE = "_pictureRelativeStore";
+	private static final String _IP = "_ip";
+	private static final String TRUE_STRING = "true";
+	private static final String FALSE_STRING = "false";
+
+	protected static Map<String, String> propertiesMap = new HashMap<String, String>();
+	protected static Map<String, WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
+	protected static Map<String, WebcamProperty> enabledWebcamPropertiesMap = new HashMap<String, WebcamProperty>();
 	protected static String[] webcamArray;
 	protected static boolean checkIp = true;
 
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
-	
+
 	static {
 		try {
-			input = new FileInputStream("config.properties");
+			input = new FileInputStream(CONFIG_PROPERTIES);
 			prop.load(input);
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -65,140 +81,178 @@ public class PropertiesManager {
 			}
 		}
 	}
-	
+
 	public static void setupConfigProperties() throws PropertiesException {
 		log.info("***********************************************");
 		log.info("**** Get Properties From config.properties ****");
 		log.info("***********************************************");
 
-		String absoluteStorageFolder = getAbsoluteStorageFolderFromConfigProperties();
-		log.info("AbsoluteStorageFolder: "+absoluteStorageFolder);
-		propertiesMap.put("AbsoluteStorageFolder", absoluteStorageFolder);
-		
-		Long diskSpace = getDiskSpaceFromConfigProperties();
-		log.info("DiskSpace: "+diskSpace);
+		String videoAbsoluteStorageFolder = getVideoAbsoluteStorageFolderFromConfigProperties();
+		log.info("VideoAbsoluteStorageFolder: " + videoAbsoluteStorageFolder);
+		propertiesMap.put("VideoAbsoluteStorageFolder", videoAbsoluteStorageFolder);
+
+		String pictureAbsoluteStorageFolder = getPictureAbsoluteStorageFolderFromConfigProperties();
+		log.info("PictureAbsoluteStorageFolder: " + pictureAbsoluteStorageFolder);
+		propertiesMap.put("PictureAbsoluteStorageFolder", pictureAbsoluteStorageFolder);
+
+		Long diskSpace = getVideoMaxDiskSpaceFromConfigProperties();
+		log.info("DiskSpace: " + diskSpace);
 		propertiesMap.put("DiskSpace", String.valueOf(diskSpace));
-		
+
 		Long videoLength = getVideoLengthFromConfigProperties();
-		log.info("VideoLength: "+videoLength);
+		log.info("VideoLength: " + videoLength);
 		propertiesMap.put("VideoLength", String.valueOf(videoLength));
 
 		Long overlap = getOverlapFromConfigProperties();
-		log.info("Overlap: "+overlap);
+		log.info("Overlap: " + overlap);
 		propertiesMap.put("Overlap", String.valueOf(overlap));
-		
+
+		Long pictureInterval = getPictureIntervalFromConfigProperties();
+		log.info("PictureInterval: " + pictureInterval);
+		propertiesMap.put("PictureInterval", String.valueOf(pictureInterval));
+
 		try {
 			webcamArray = getWebcamNamesFromConfigProperties();
 		} catch (CSVFormatPropertiesException e1) {
 			log.info("error occured reading webcam names property");
 			e1.printStackTrace();
 		}
-		
-		log.info("webcamArray: "+Arrays.toString(webcamArray));
-		
+
+		log.info("webcamArray: " + Arrays.toString(webcamArray));
+
 		for (int i = 0; i < webcamArray.length; i++) {
 			WebcamProperty webcamProperty = null;
 			try {
 				webcamProperty = getWebcamPropertyFromConfigPropertiesById(webcamArray[i]);
 			} catch (WebcamPropertyIDException e) {
-				log.info("error occured reading webcam "+webcamArray[i]+" property ");
+				log.info("error occured reading webcam " + webcamArray[i] + " property ");
 				continue;
 			}
 
 			webcamPropertiesMap.put(webcamArray[i], webcamProperty);
-			if(webcamProperty.isEnabled()) {
+			if (webcamProperty.isEnabled()) {
 				enabledWebcamPropertiesMap.put(webcamArray[i], webcamProperty);
 			}
 		}
-		
+
 		log.info("***********************************************");
 		log.info("********* Properties setup Complete ***********");
 		log.info("***********************************************");
 	}
-	
 
 	private static String getStringPropertyByName(String propertyName) throws PropertiesException {
 		String propertyStr = "";
 		propertyStr = prop.getProperty(propertyName);
-		
-		if(propertyStr == null || propertyStr.equalsIgnoreCase("")) {
-			throw new PropertiesException("Cannot Read Property "+propertyName);
+
+		if (propertyStr == null || propertyStr.equalsIgnoreCase("")) {
+			throw new PropertiesException("Cannot Read Property " + propertyName);
 		}
-		
+
 		return propertyStr;
 	}
-	
-	
-	private static long getNumberPropertyByName(String propertyName) throws PropertiesException, NumberFormatPropertiesException {
+
+	private static long getNumberPropertyByName(String propertyName)
+			throws PropertiesException, NumberFormatPropertiesException {
 		String propertyStr;
-		
+
 		propertyStr = prop.getProperty(propertyName);
 
-		if(propertyStr == null || propertyStr.equalsIgnoreCase("")) {
-			throw new PropertiesException("Cannot Read Property "+propertyName+", property is null");
+		if (propertyStr == null || propertyStr.equalsIgnoreCase("")) {
+			throw new PropertiesException("Cannot Read Property " + propertyName + ", property is null");
 		}
-		
+
 		long propertyNumber;
 		try {
 			propertyNumber = Long.parseLong(propertyStr);
 		} catch (NumberFormatException e) {
-			throw new NumberFormatPropertiesException("Cannot Read Property "+propertyName+", malformed number");
+			throw new NumberFormatPropertiesException("Cannot Read Property " + propertyName + ", malformed number");
 		}
-		
+
 		return propertyNumber;
 	}
 
-	protected static String getAbsoluteStorageFolderFromConfigProperties() throws PropertiesException {
+	protected static String getVideoAbsoluteStorageFolderFromConfigProperties() throws PropertiesException {
 		String storageFolder = "";
 
-		storageFolder = getStringPropertyByName("AbsoluteStorageFolder");
+		storageFolder = getStringPropertyByName(VIDEO_ABSOLUTE_STORAGE_FOLDER);
 
 		File storageDirectory = new File(storageFolder);
 
-		if (!storageDirectory.exists()||!storageDirectory.isDirectory()) {
-			throw new PropertiesException("AbsoluteStorageFolder property cannot access Directory "+storageFolder);
+		if (!storageDirectory.exists() || !storageDirectory.isDirectory()) {
+			throw new PropertiesException(
+					"VideoAbsoluteStorageFolder property cannot access Directory " + storageFolder);
 		}
 
 		return storageFolder;
 	}
-	
-	public static String getAbsoluteStorageFolder() {
-		return propertiesMap.get("AbsoluteStorageFolder");
+
+	private static String getPictureAbsoluteStorageFolderFromConfigProperties() throws PropertiesException {
+		String storageFolder = "";
+
+		storageFolder = getStringPropertyByName(PICTURE_ABSOLUTE_STORAGE_FOLDER);
+
+		File storageDirectory = new File(storageFolder);
+
+		if (!storageDirectory.exists() || !storageDirectory.isDirectory()) {
+			throw new PropertiesException(
+					"PictureAbsoluteStorageFolder property cannot access Directory " + storageFolder);
+		}
+
+		return storageFolder;
 	}
-	
-	protected static Long getDiskSpaceFromConfigProperties() throws PropertiesException, NumberFormatPropertiesException {
+
+	public static String getVideoAbsoluteStorageFolder() {
+		return propertiesMap.get(VIDEO_ABSOLUTE_STORAGE_FOLDER);
+	}
+
+	public static String getPictureAbsoluteStorageFolder() {
+		return propertiesMap.get(PICTURE_ABSOLUTE_STORAGE_FOLDER);
+	}
+
+	protected static Long getVideoMaxDiskSpaceFromConfigProperties()
+			throws PropertiesException, NumberFormatPropertiesException {
 		long diskSpace = 0L;
-		
-		diskSpace = getNumberPropertyByName("DiskSpace");
-		
-		return diskSpace;
-	}
 
-	public static Long getDiskSpace() {
-		String diskSpaceStr = propertiesMap.get("DiskSpace");
-		
-		Long diskSpace = Long.parseLong(diskSpaceStr);
+		diskSpace = getNumberPropertyByName(VIDEO_MAX_DISK_SPACE);
 
 		return diskSpace;
 	}
 
-	protected static String[] getWebcamNamesFromConfigProperties() throws PropertiesException, CSVFormatPropertiesException {
+	protected static Long getPictureMaxDiskSpaceFromConfigProperties()
+			throws PropertiesException, NumberFormatPropertiesException {
+		long diskSpace = 0L;
+
+		diskSpace = getNumberPropertyByName(PICTURE_MAX_DISK_SPACE);
+
+		return diskSpace;
+	}
+
+	public static Long getVideoMaxDiskSpace() {
+		String videoMaxDiskSpaceStr = propertiesMap.get(VIDEO_MAX_DISK_SPACE);
+
+		Long diskSpace = Long.parseLong(videoMaxDiskSpaceStr);
+
+		return diskSpace;
+	}
+
+	protected static String[] getWebcamNamesFromConfigProperties()
+			throws PropertiesException, CSVFormatPropertiesException {
 		String webcams = "";
-		
-		webcams = getStringPropertyByName("WebCams");
-				
+
+		webcams = getStringPropertyByName(WEBCAM_ID);
+
 		String[] webcamArray = null;
-		
+
 		webcamArray = webcams.split(",", -1);
 		for (String webcamName : webcamArray) {
-			if(webcamName==null || webcamName.trim() == "" || webcamName.isEmpty()) {
+			if (webcamName == null || webcamName.trim() == "" || webcamName.isEmpty()) {
 				throw new CSVFormatPropertiesException("Cannot Read correct CSV on Property WebCams");
 			}
 		}
 
 		return webcamArray;
 	}
-	
+
 	public static Map<String, WebcamProperty> getEnabledWebcamPropertiesMap() {
 		return enabledWebcamPropertiesMap;
 	}
@@ -211,113 +265,137 @@ public class PropertiesManager {
 		return webcamArray;
 	}
 
-	protected static Long getVideoLengthFromConfigProperties() throws NumberFormatPropertiesException, PropertiesException {
+	protected static Long getVideoLengthFromConfigProperties()
+			throws NumberFormatPropertiesException, PropertiesException {
 		long videoLength = 0L;
-		
-		videoLength = getNumberPropertyByName("VideoLength");
-		
+
+		videoLength = getNumberPropertyByName(VIDEO_LENGTH);
+
 		return videoLength;
 	}
 
+	public static Long getVideoLength() {
+		String videoLengthStr = propertiesMap.get(VIDEO_LENGTH);
 
-	public static Long getVideoLength(){
-		String videoLengthStr = propertiesMap.get("VideoLength");
-		
 		Long videoLength = Long.parseLong(videoLengthStr);
 
 		return videoLength;
 	}
-	
+
 	protected static Long getOverlapFromConfigProperties() throws NumberFormatPropertiesException, PropertiesException {
 		long overlap = 0L;
-		
-		overlap = getNumberPropertyByName("Overlap");
-		
+
+		overlap = getNumberPropertyByName(OVERLAP);
+
 		return overlap;
 	}
 
 	public static Long getOverlap() {
-		String overlapStr = propertiesMap.get("Overlap");
-		
+		String overlapStr = propertiesMap.get(OVERLAP);
+
 		Long overlap = Long.parseLong(overlapStr);
 
 		return overlap;
 	}
 
+	protected static Long getPictureIntervalFromConfigProperties()
+			throws NumberFormatPropertiesException, PropertiesException {
+		long pictureInterval = 0L;
+
+		pictureInterval = getNumberPropertyByName(PICTURE_INTERVAL);
+
+		return pictureInterval;
+	}
+
+	public static Long getPictureInterval() {
+		String pictureIntervalStr = propertiesMap.get(PICTURE_INTERVAL);
+
+		Long pictureInterval = Long.parseLong(pictureIntervalStr);
+
+		return pictureInterval;
+	}
+
 	public static WebcamProperty getWebcamPropertyById(String webcamId) {
 		WebcamProperty webcamProperty = webcamPropertiesMap.get(webcamId);
-		
+
 		return webcamProperty;
 	}
 
 	public static Map<String, WebcamProperty> getEnabledWebcam() {
-		
+
 		return enabledWebcamPropertiesMap;
 	}
 
-	protected static WebcamProperty getWebcamPropertyFromConfigPropertiesById(String webcamId) throws WebcamPropertyIDException, UnreachableIpException {
+	protected static WebcamProperty getWebcamPropertyFromConfigPropertiesById(String webcamId)
+			throws WebcamPropertyIDException, UnreachableIpException {
 		WebcamProperty webcamProperty = new WebcamProperty();
 
 		webcamProperty.setiD(webcamId);
 
 		String enabledStr;
-		
-		enabledStr = prop.getProperty(webcamId+"_enabled");
-		if(enabledStr == null || enabledStr.equalsIgnoreCase("")) {
-			throw new WebcamPropertyIDException("Cannot Read Property "+webcamId+"_enabled, property is null");
+
+		enabledStr = prop.getProperty(webcamId + _ENABLED);
+		if (enabledStr == null || enabledStr.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot Read Property " + webcamId + _ENABLED + ", property is null");
 		}
 
-		
 		boolean enabled = false;
-		
-		if(!isValidBooleanString(enabledStr)) {
+
+		if (!isValidBooleanString(enabledStr)) {
 			throw new BooleanStringPropertyException("");
 		}
 
 		enabled = Boolean.parseBoolean(enabledStr);
 		webcamProperty.setEnabled(enabled);
-		
-		String relativeStore = "";
-		relativeStore = prop.getProperty(webcamId+"_relativeStore");
-		if(relativeStore == null || relativeStore.equalsIgnoreCase("")) {
-			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_relativeStore, property is null");
+
+		String videoRelativeStore = "";
+		videoRelativeStore = prop.getProperty(webcamId + _VIDEO_RELATIVE_STORE);
+		if (videoRelativeStore == null || videoRelativeStore.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException(
+					"Cannot read Property " + webcamId + _VIDEO_RELATIVE_STORE + ", property is null");
 		}
-		
-		webcamProperty.setRelativeStorageFolder(relativeStore);
+
+		webcamProperty.setVideoRelativeStorageFolder(videoRelativeStore);
+
+		String pictureRelativeStore = "";
+		pictureRelativeStore = prop.getProperty(webcamId + _PICTURE_RELATIVE_STORE);
+		if (pictureRelativeStore == null || pictureRelativeStore.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException(
+					"Cannot read Property " + webcamId + _PICTURE_RELATIVE_STORE + ", property is null");
+		}
+
+		webcamProperty.setPictureRelativeStorageFolder(pictureRelativeStore);
 
 		String webcamIP = "";
-		webcamIP = prop.getProperty(webcamId+"_ip");
+		webcamIP = prop.getProperty(webcamId + _IP);
 
-		if(webcamIP == null || webcamIP.equalsIgnoreCase("")) {
-			throw new WebcamPropertyIDException("Cannot read Property "+webcamId+"_ip, property is null");
+		if (webcamIP == null || webcamIP.equalsIgnoreCase("")) {
+			throw new WebcamPropertyIDException("Cannot read Property " + webcamId + _IP + ", property is null");
 		}
 
-
-		if(checkIp && enabled && !isIPOnline(webcamIP)){
-			throw new UnreachableIpException("Unable to reach "+webcamIP+" for webcam "+webcamId);
+		if (checkIp && enabled && !isIPOnline(webcamIP)) {
+			throw new UnreachableIpException("Unable to reach " + webcamIP + " for webcam " + webcamId);
 		}
-		
+
 		webcamProperty.setIp(webcamIP);
 
 		return webcamProperty;
 	}
 
-	
 	private static boolean isIPOnline(String webcamIP) {
-		
-		if(PingIp.isPingReachable(webcamIP)){
+
+		if (PingIp.isPingReachable(webcamIP)) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
-
 	private static boolean isValidBooleanString(String enabledStr) {
-		if (enabledStr.equalsIgnoreCase("true") || enabledStr.equalsIgnoreCase("false")) {
+		if (enabledStr.equalsIgnoreCase(TRUE_STRING) || enabledStr.equalsIgnoreCase(FALSE_STRING)) {
 			return true;
 		}
-		
+
 		return false;
 	}
 }

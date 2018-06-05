@@ -1,16 +1,10 @@
-package it.mountaineering.ring.memory.util;
+package it.mountaineering.ring.memory.bean;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import it.mountaineering.ring.memory.scheduled.task.FileWithCreationTime;
-
 public class DiskSpaceProperties {
-
 
 	Long folderSize;
 	Long fileNumber;
@@ -52,15 +46,6 @@ public class DiskSpaceProperties {
 		}
 		
 		fileMap.put(fileWithCreationTime.getCreationTime(), fileWithCreationTime.getFile());
-	}
-	
-	private long getFileCreationEpoch(File file) {
-		try {
-			BasicFileAttributes attr = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
-			return attr.creationTime().toInstant().toEpochMilli();
-		} catch (IOException e) {
-			throw new RuntimeException(file.getAbsolutePath(), e);
-		}
 	}
 
 	public Map<Long,File> getFileMap() {

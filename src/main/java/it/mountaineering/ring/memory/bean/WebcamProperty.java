@@ -1,11 +1,12 @@
-package it.mountaineering.ring.memory.webcam;
+package it.mountaineering.ring.memory.bean;
 
 public class WebcamProperty {
 
 	String iD;
 	boolean enabled;
 	String ip;
-	String relativeStorageFolder;
+	String videoRelativeStorageFolder;
+	String pictureRelativeStorageFolder;
 
 	public String getiD() {
 		return iD;
@@ -31,12 +32,20 @@ public class WebcamProperty {
 		this.ip = ip;
 	}
 
-	public String getRelativeStorageFolder() {
-		return relativeStorageFolder;
+	public String getVideoRelativeStorageFolder() {
+		return videoRelativeStorageFolder;
 	}
 
-	public void setRelativeStorageFolder(String relativeStorageFolder) {
-		this.relativeStorageFolder = relativeStorageFolder;
+	public void setVideoRelativeStorageFolder(String videoRelativeStorageFolder) {
+		this.videoRelativeStorageFolder = videoRelativeStorageFolder;
+	}
+
+	public String getPictureRelativeStorageFolder() {
+		return pictureRelativeStorageFolder;
+	}
+
+	public void setPictureRelativeStorageFolder(String pictureRelativeStorageFolder) {
+		this.pictureRelativeStorageFolder = pictureRelativeStorageFolder;
 	}
 
 	@Override
@@ -46,7 +55,9 @@ public class WebcamProperty {
 		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result + ((iD == null) ? 0 : iD.hashCode());
 		result = prime * result + ((ip == null) ? 0 : ip.hashCode());
-		result = prime * result + ((relativeStorageFolder == null) ? 0 : relativeStorageFolder.hashCode());
+		result = prime * result
+				+ ((pictureRelativeStorageFolder == null) ? 0 : pictureRelativeStorageFolder.hashCode());
+		result = prime * result + ((videoRelativeStorageFolder == null) ? 0 : videoRelativeStorageFolder.hashCode());
 		return result;
 	}
 
@@ -71,10 +82,15 @@ public class WebcamProperty {
 				return false;
 		} else if (!ip.equals(other.ip))
 			return false;
-		if (relativeStorageFolder == null) {
-			if (other.relativeStorageFolder != null)
+		if (pictureRelativeStorageFolder == null) {
+			if (other.pictureRelativeStorageFolder != null)
 				return false;
-		} else if (!relativeStorageFolder.equals(other.relativeStorageFolder))
+		} else if (!pictureRelativeStorageFolder.equals(other.pictureRelativeStorageFolder))
+			return false;
+		if (videoRelativeStorageFolder == null) {
+			if (other.videoRelativeStorageFolder != null)
+				return false;
+		} else if (!videoRelativeStorageFolder.equals(other.videoRelativeStorageFolder))
 			return false;
 		return true;
 	}

@@ -12,15 +12,21 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import it.mountaineering.ring.memory.bean.WebcamProperty;
 import it.mountaineering.ring.memory.exception.PropertiesException;
 import it.mountaineering.ring.memory.util.DiskSpaceManager;
-import it.mountaineering.ring.memory.webcam.WebcamProperty;
 
 public class TestVlcLauncherScheduledTask {
 
 	Date now;
 	private static List<File> latestFileList;
 	private static final String resourceFolder = "C:\\Users\\Lele\\workspace\\CircularMemory\\src\\test\\resources\\";
+	private static DiskSpaceManager diskSPaceManager;
+	
+	{
+		diskSPaceManager = new DiskSpaceManager();
+	}
+
 
 	@Test
 	public void runTest() {
@@ -54,7 +60,7 @@ public class TestVlcLauncherScheduledTask {
 		String[] webcamArray = null;
 		webcamArray = PropertiesManager.getWebcamNames();
 
-		String absoluteStorageFolder = PropertiesManager.getAbsoluteStorageFolder();
+		String absoluteStorageFolder = PropertiesManager.getVideoAbsoluteStorageFolder();
 
 		for (int i = 0; i < webcamArray.length; i++) {
 			String webcamId = webcamArray[i];
@@ -65,17 +71,17 @@ public class TestVlcLauncherScheduledTask {
 				latestFileList.remove(0);
 			}
 
-			if (!DiskSpaceManager.hasEnoughMemory()) {
+			if (!diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder())) {
 				System.out.println("!DiskSpaceManager.hasEnoughMemory(): deleteOldestFilesFromMemory()");
-				DiskSpaceManager.deleteOldestFilesFromMemory();
+				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
 
 			WebcamProperty webcamProperty = null;
 			webcamProperty = PropertiesManager.getWebcamPropertyById(webcamId);
 			System.out.println("Time is :" + now + " webcam " + webcamId + " - enabled: " + webcamProperty.isEnabled() + " - IP: "
-					+ webcamProperty.getIp() + " - folder: " + webcamProperty.getRelativeStorageFolder());
+					+ webcamProperty.getIp() + " - folder: " + webcamProperty.getVideoRelativeStorageFolder());
 
-			String relativeStorageFolder = webcamProperty.getRelativeStorageFolder();
+			String relativeStorageFolder = webcamProperty.getVideoRelativeStorageFolder();
 			absoluteStorageFolder = checkSlashesOnPath(absoluteStorageFolder);
 			relativeStorageFolder = checkSlashesOnPath(relativeStorageFolder);
 			String timeStamp = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());

@@ -1,4 +1,4 @@
-package it.mountaineering.ring.memory.scheduled.task;
+package it.mountaineering.ring.memory.bean;
 
 import java.io.File;
 

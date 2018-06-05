@@ -8,9 +8,16 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import it.mountaineering.ring.memory.bean.DiskSpaceProperties;
 import it.mountaineering.ring.memory.exception.PropertiesException;
 
 public class DiskSpaceManagerTest {
+
+	private static DiskSpaceManager diskSPaceManager;
+	
+	{
+		diskSPaceManager = new DiskSpaceManager();
+	}
 
 	@Test
 	public void testIsMemoryEnough() {
@@ -25,7 +32,7 @@ public class DiskSpaceManagerTest {
 			e.printStackTrace();
 		}
 		
-		boolean isMemoryEnough = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough==true);
 		
 		File testFile_1 = new File("src//test//resources//TEST_FOLDER//test_file_1.txt");
@@ -33,50 +40,50 @@ public class DiskSpaceManagerTest {
 
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_1);
 		
-		boolean isMemoryEnough_1 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_1 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_1==true);
 
 		File testFile_2 = new File("src//test//resources//TEST_FOLDER//test_file_2.txt");
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_2);
 
-		boolean isMemoryEnough_3 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_3 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_3==true);
 
 		File testFile_3 = new File("src//test//resources//TEST_FOLDER//test_file_3.txt");
 
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_3);
 		
-		boolean isMemoryEnough_4 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_4 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_4==true);
 
 		File testFile_4 = new File("src//test//resources//TEST_FOLDER//test_file_4.txt");
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_4);
 		
-		boolean isMemoryEnough_5 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_5 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_5==true);
 
 		File testFile_5 = new File("src//test//resources//TEST_FOLDER//test_file_5.txt");
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_5);
 		
-		boolean isMemoryEnough_6 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_6 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_6==true);
 
 		File testFile_6 = new File("src//test//resources//TEST_FOLDER//test_file_6.txt");
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_6);
 		
-		boolean isMemoryEnough_7 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_7 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_7==true);
 
 		File testFile_7 = new File("src//test//resources//TEST_FOLDER//test_file_7.txt");
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_7);
 		
-		boolean isMemoryEnough_8 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_8 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_8==true);
 
 		File testFile_8 = new File("src//test//resources//TEST_FOLDER//test_file_8.txt");
 		UtilityForTests.copyFileUsingFileStreams(testFile, testFile_8);
 		
-		boolean isMemoryEnough_9 = DiskSpaceManager.hasEnoughMemory();
+		boolean isMemoryEnough_9 = diskSPaceManager.hasEnoughMemory(PropertiesManager.getVideoAbsoluteStorageFolder());
 		assertTrue(isMemoryEnough_9==false);
 	}
 
@@ -86,7 +93,7 @@ public class DiskSpaceManagerTest {
 		diskSpaceProperties.setFileNumber(100L);
 		diskSpaceProperties.setFolderSize(15574L);
 
-		Long calculatedThreshOld = DiskSpaceManager.calculateSafetyThreshold(diskSpaceProperties);
+		Long calculatedThreshOld = diskSPaceManager.calculateSafetyThreshold(diskSpaceProperties);
 		assertTrue(233L==calculatedThreshOld);
 	}
 	
@@ -120,7 +127,7 @@ public class DiskSpaceManagerTest {
 		UtilityForTests.copyFileUsingFileStreams(testFile, file4);
 		//DiskSpaceManager.addLatestFile(file4);
 		
-		DiskSpaceManager.deleteOldestFilesFromMemory();
+		diskSPaceManager.deleteOldestFilesFromMemory();
 
 		boolean findFile = UtilityForTests.findFile(fileName, new File(filePath));
 		
@@ -132,7 +139,7 @@ public class DiskSpaceManagerTest {
 		
 		assertTrue(findFile2==false);
 
-		DiskSpaceManager.deleteOldestFilesFromMemory();
+		diskSPaceManager.deleteOldestFilesFromMemory();
 		
 		boolean findFile3 = UtilityForTests.findFile(fileName3, new File(filePath));
 		
