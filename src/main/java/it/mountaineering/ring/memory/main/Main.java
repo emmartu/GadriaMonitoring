@@ -3,6 +3,7 @@ package it.mountaineering.ring.memory.main;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Timer;
+import java.util.concurrent.SynchronousQueue;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,6 @@ import it.mountaineering.ring.memory.util.PropertiesManager;
 public class Main {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(Main.class.getName());
-	private static final long MIN_SPACE = 1000;
 
 	public static Timer vlcTimer;
 	public static VlcLauncherScheduledTask vlcLauncher;
@@ -68,11 +68,17 @@ public class Main {
 	}
 	
 	private void setupProperties() throws PropertiesException {
-		log.info("*******************************************");
-		log.info("*******************************************");
-		log.info("****** WEBCAM VIDEO RECORDER MANAGER ******");
-		log.info("*******************************************");
-		log.info("*******************************************");
+		//log.info("*******************************************");
+		//log.info("*******************************************");
+		//log.info("****** WEBCAM VIDEO RECORDER MANAGER ******");
+		//log.info("*******************************************");
+		//log.info("*******************************************");
+
+		System.out.println("*******************************************");
+		System.out.println("*******************************************");
+		System.out.println("****** WEBCAM VIDEO RECORDER MANAGER ******");
+		System.out.println("*******************************************");
+		System.out.println("*******************************************");
 
 		PropertiesManager.setupConfigProperties();
 	}

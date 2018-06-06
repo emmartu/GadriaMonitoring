@@ -86,65 +86,82 @@ public class PropertiesManager {
 	}
 
 	public static void setupConfigProperties() throws PropertiesException {
-		log.info("***********************************************");
-		log.info("**** Get Properties From config.properties ****");
-		log.info("***********************************************");
-		
+		//log.info("***********************************************");
+		//log.info("**** Get Properties From config.properties ****");
+		//log.info("***********************************************");
+
+		System.out.println("***********************************************");
+		System.out.println("**** Get Properties From config.properties ****");
+		System.out.println("***********************************************");
+
 		String videoCaptureEnabled = getVideoCaptureEnabledFromConfigProperties();
-		log.info("VideoCaptureEnabled: " + videoCaptureEnabled);
+		//log.info("VideoCaptureEnabled: " + videoCaptureEnabled);
+		System.out.println("VideoCaptureEnabled: " + videoCaptureEnabled);
 		propertiesMap.put(VIDEO_CAPTURE_ENABLED, videoCaptureEnabled);
 
 		String videoLanExePath = getVideoLanExePathFromConfigProperties();
-		log.info("videoLanExePath: " + videoLanExePath);
+		//log.info("videoLanExePath: " + videoLanExePath);
+		System.out.println("videoLanExePath: " + videoLanExePath);
 		propertiesMap.put(VIDEOLAN_EXE_PATH, videoLanExePath);
 
 		String pictureCaptureEnabled = getPictureCaptureEnabledFromConfigProperties();
-		log.info("PictureCaptureEnabled: " + pictureCaptureEnabled);
+		//log.info("PictureCaptureEnabled: " + pictureCaptureEnabled);
+		System.out.println("PictureCaptureEnabled: " + pictureCaptureEnabled);
 		propertiesMap.put(PICTURE_CAPTURE_ENABLED, pictureCaptureEnabled);
 
 		String videoAbsoluteStorageFolder = getVideoAbsoluteStorageFolderFromConfigProperties();
-		log.info("VideoAbsoluteStorageFolder: " + videoAbsoluteStorageFolder);
+		//log.info("VideoAbsoluteStorageFolder: " + videoAbsoluteStorageFolder);
+		System.out.println("VideoAbsoluteStorageFolder: " + videoAbsoluteStorageFolder);
 		propertiesMap.put(VIDEO_ABSOLUTE_STORAGE_FOLDER, videoAbsoluteStorageFolder);
 
 		String pictureAbsoluteStorageFolder = getPictureAbsoluteStorageFolderFromConfigProperties();
-		log.info("PictureAbsoluteStorageFolder: " + pictureAbsoluteStorageFolder);
+		//log.info("PictureAbsoluteStorageFolder: " + pictureAbsoluteStorageFolder);
+		System.out.println("PictureAbsoluteStorageFolder: " + pictureAbsoluteStorageFolder);
 		propertiesMap.put(PICTURE_ABSOLUTE_STORAGE_FOLDER, pictureAbsoluteStorageFolder);
 
 		Long videoMaxDiskSpace = getVideoMaxDiskSpaceFromConfigProperties();
-		log.info("VideoMaxDiskSpace: " + videoMaxDiskSpace);
+		//log.info("VideoMaxDiskSpace: " + videoMaxDiskSpace);
+		System.out.println("VideoMaxDiskSpace: " + videoMaxDiskSpace);
 		propertiesMap.put(VIDEO_MAX_DISK_SPACE, String.valueOf(videoMaxDiskSpace));
 
 		Long pictureMaxDiskSpace = getPictureMaxDiskSpaceFromConfigProperties();
-		log.info("PictureMaxDiskSpace: " + pictureMaxDiskSpace);
+		//log.info("PictureMaxDiskSpace: " + pictureMaxDiskSpace);
+		System.out.println("PictureMaxDiskSpace: " + pictureMaxDiskSpace);
 		propertiesMap.put(PICTURE_MAX_DISK_SPACE, String.valueOf(pictureMaxDiskSpace));
 
 		Long videoLength = getVideoLengthFromConfigProperties();
-		log.info("VideoLength: " + videoLength);
+		//log.info("VideoLength: " + videoLength);
+		System.out.println("VideoLength: " + videoLength);
 		propertiesMap.put(VIDEO_LENGTH, String.valueOf(videoLength));
 
 		Long overlap = getOverlapFromConfigProperties();
-		log.info("Overlap: " + overlap);
+		//log.info("Overlap: " + overlap);
+		System.out.println("Overlap: " + overlap);
 		propertiesMap.put(OVERLAP, String.valueOf(overlap));
 
 		Long pictureInterval = getPictureIntervalFromConfigProperties();
-		log.info("PictureInterval: " + pictureInterval);
+		//log.info("PictureInterval: " + pictureInterval);
+		System.out.println("PictureInterval: " + pictureInterval);
 		propertiesMap.put(PICTURE_INTERVAL, String.valueOf(pictureInterval));
 
 		try {
 			webcamArray = getWebcamNamesFromConfigProperties();
 		} catch (CSVFormatPropertiesException e1) {
-			log.info("error occured reading webcam names property");
+			//log.info("error occured reading webcam names property");
+			System.out.println("error occured reading webcam names property");
 			e1.printStackTrace();
 		}
 
-		log.info("webcamArray: " + Arrays.toString(webcamArray));
+		//log.info("webcamArray: " + Arrays.toString(webcamArray));
+		System.out.println("webcamArray: " + Arrays.toString(webcamArray));
 
 		for (int i = 0; i < webcamArray.length; i++) {
 			WebcamProperty webcamProperty = null;
 			try {
 				webcamProperty = getWebcamPropertyFromConfigPropertiesById(webcamArray[i]);
 			} catch (WebcamPropertyIDException e) {
-				log.info("error occured reading webcam " + webcamArray[i] + " property ");
+				//log.info("error occured reading webcam " + webcamArray[i] + " property ");
+				System.out.println("error occured reading webcam " + webcamArray[i] + " property ");
 				continue;
 			}
 
@@ -154,9 +171,12 @@ public class PropertiesManager {
 			}
 		}
 
-		log.info("***********************************************");
-		log.info("********* Properties setup Complete ***********");
-		log.info("***********************************************");
+		//log.info("***********************************************");
+		//log.info("********* Properties setup Complete ***********");
+		//log.info("***********************************************");
+		System.out.println("***********************************************");
+		System.out.println("********* Properties setup Complete ***********");
+		System.out.println("***********************************************");
 	}
 
 	private static String getStringPropertyByName(String propertyName) throws PropertiesException {
@@ -486,4 +506,13 @@ public class PropertiesManager {
 
 		return false;
 	}
+
+	public static boolean isCheckIp() {
+		return checkIp;
+	}
+
+	public static void setCheckIp(boolean checkIp) {
+		PropertiesManager.checkIp = checkIp;
+	}
+
 }

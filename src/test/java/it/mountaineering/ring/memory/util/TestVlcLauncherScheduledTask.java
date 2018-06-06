@@ -21,16 +21,12 @@ import it.mountaineering.ring.memory.util.DiskSpaceManager;
 
 public class TestVlcLauncherScheduledTask {
 
-	private static final String VLC_VIDEO_RECORDER_BAT = "VlcVideoRecorder.bat";
-	private static DiskSpaceManager diskSPaceManager;
+	private DiskSpaceManager diskSPaceManager;
 	
-	{
-		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
-	}
-
 	Date now;
 	private boolean hasStarted = false;
 	private static List<FileWithCreationTime> latestFileList;
+	private final String resourceFolder = "C:\\Users\\Lele\\workspace\\CircularMemory\\src\\test\\resources\\";
 	
 	@Test
 	public void runTest() {
@@ -44,7 +40,11 @@ public class TestVlcLauncherScheduledTask {
 			e.printStackTrace();
 		}		
 
-		for(int a=0;a<=4;a++) {
+		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
+		//System.out.println("runTest num");
+		//test();
+
+		for(int a=0;a<=2;a++) {
 			System.out.println("runTest num = "+a);
 			test();
 			try {
@@ -58,30 +58,25 @@ public class TestVlcLauncherScheduledTask {
 	}
 
 	public void test() {
-		now = new Date(); // initialize date
-		initLatestFileMap();
+		now = new Date();
+		initLatestFileList();
 
-		String[] webcamArray = null;
-		webcamArray = PropertiesManager.getWebcamNames();
+		Map<String,WebcamProperty> enabledWebcamPropertiesMap = PropertiesManager.getEnabledWebcamPropertiesMap();
 
 		String absoluteStorageFolder = PropertiesManager.getVideoAbsoluteStorageFolder();
+		Long videoLength = 0L;
+		videoLength = PropertiesManager.getVideoLength();
 
-		for (int i = 0; i < webcamArray.length; i++) {
-			String webcamId = webcamArray[i];
-
-			if (!latestFileList.isEmpty()) {
-				//System.out.println("addLatestFile to DiskSpaceManager: "+latestFileList.get(0).getName());
-				//DiskSpaceManager.addLatestFile(latestFileList.get(0));
-				latestFileList.remove(0);
+		for (String webcamId : enabledWebcamPropertiesMap.keySet()){
+			if(!latestFileList.isEmpty()) {
+				diskSPaceManager.addLatestFile(latestFileList.get(0));
 			}
 
-			while (!diskSPaceManager.hasEnoughMemory()) {
-				System.out.println("!DiskSpaceManager.hasEnoughMemory(): deleteOldestFilesFromMemory()");
+			while(!diskSPaceManager.hasEnoughMemory()) {
 				diskSPaceManager.deleteOldestFilesFromMemory();
 			}
 
-			WebcamProperty webcamProperty = null;
-			webcamProperty = PropertiesManager.getWebcamPropertyById(webcamId);
+			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
 			System.out.println("Time is :" + now + " webcam " + webcamId + " - enabled: " + webcamProperty.isEnabled() + " - IP: "
 					+ webcamProperty.getIp() + " - folder: " + webcamProperty.getVideoRelativeStorageFolder());
 
@@ -89,28 +84,31 @@ public class TestVlcLauncherScheduledTask {
 			absoluteStorageFolder = checkSlashesOnPath(absoluteStorageFolder);
 			relativeStorageFolder = checkSlashesOnPath(relativeStorageFolder);
 			String timeStamp = new SimpleDateFormat("yyyy-MM-dd@HH-mm-ss.S").format(new Date());
-			String fileName = webcamId + "_" + timeStamp + ".mp4";
+			String fileName = webcamId+"_"+timeStamp+".mp4";
 
 			String storageFolderFullPath = absoluteStorageFolder + relativeStorageFolder;
 			checkFolder(storageFolderFullPath);
 
 			String storageFileFullPath = absoluteStorageFolder + relativeStorageFolder + fileName;
+			
+			long latestFileCreationTime = System.currentTimeMillis();
 
 			try {
 				UtilityForTests.createNewFile(storageFileFullPath);
-				//UtilityForTests.copyFileUsingFileStreams(new File(resourceFolder+"test.mp4"),new File(storageFileFullPath));
+				UtilityForTests.copyFileUsingFileStreams(new File(resourceFolder+"test.mp4"),new File(storageFileFullPath));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			//latestFileList.add(new File(storageFileFullPath));
+			FileWithCreationTime fileWithCreationTime = new FileWithCreationTime(storageFileFullPath, latestFileCreationTime);
+			latestFileList.add(fileWithCreationTime);
 		}
 		
 	}
 
-	private static void initLatestFileMap() {
-		if (latestFileList == null) {
-			//latestFileList = new ArrayList<File>();
+	private static void initLatestFileList() {
+		if (latestFileList==null) {
+			latestFileList = new ArrayList<FileWithCreationTime>();
 		}
 	}
 

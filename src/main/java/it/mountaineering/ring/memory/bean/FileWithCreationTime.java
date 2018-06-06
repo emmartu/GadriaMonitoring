@@ -28,4 +28,8 @@ public class FileWithCreationTime {
 		this.creationTime = creationTime;
 	}
 
+	@Override
+	public String toString() {
+		return "FileWithCreationTime [file=" + file + ", creationTime=" + creationTime + "]";
+	}
 }

@@ -16,7 +16,7 @@ public class PingIp {
 			String s = "";
 			// reading output stream of the command
 			while ((s = inputStream.readLine()) != null) {
-				System.out.println(s);
+				//System.out.println(s);
 				if(s.contains("Request timed out")) {
 					return false;
 				}
