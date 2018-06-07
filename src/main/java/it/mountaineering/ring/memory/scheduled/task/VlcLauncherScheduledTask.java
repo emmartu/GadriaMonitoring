@@ -22,7 +22,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	
 	{
 		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
-		log.info("diskSPaceManager creation");
+		checkMemory();		
 	}
 
 	Date now;
@@ -44,14 +44,13 @@ public class VlcLauncherScheduledTask extends TimerTask {
 
 		for (String webcamId : enabledWebcamPropertiesMap.keySet()){
 
-			if(!latestFileList.isEmpty()) {
+			if(latestFileList.size()==2) {
 				FileWithCreationTime fileWithCreationTime = latestFileList.remove(0);
 				diskSPaceManager.addLatestFile(fileWithCreationTime);
+
+				checkMemory();
 			}
 			
-			if(!diskSPaceManager.hasEnoughMemory()) {
-				diskSPaceManager.deleteOldestFilesFromMemory();
-			}
 
 			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
 			//log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
@@ -87,6 +86,12 @@ public class VlcLauncherScheduledTask extends TimerTask {
 		}
 	}
 
+	private void checkMemory() {
+		while(!diskSPaceManager.hasEnoughMemory()) {
+			diskSPaceManager.deleteOldestFilesFromMemory();
+		}
+	}
+
 	private static void initLatestFileList() {
 		if (latestFileList==null) {
 			latestFileList = new ArrayList<FileWithCreationTime>();
@@ -94,8 +99,6 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	}
 
 	private String checkSlashesOnPath(String folderPath) {
-		//log.info("check slashes end on folder path: "+folderPath);
-
 		if (!folderPath.endsWith("\\")) {
 			folderPath += "\\";
 		}
@@ -104,11 +107,8 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	}
 
 	private void checkFolder(String storageFolderFullPath) {
-		//log.info("check if folder: "+storageFolderFullPath+" exists");
-
 		File directory = new File(storageFolderFullPath);
 		if (!directory.exists()||!directory.isDirectory()) {
-			//log.info("folder: "+directory+" doesn't exist, create");
 			System.out.println("folder: "+directory+" doesn't exist, create");
 			directory.mkdir();	
 		}

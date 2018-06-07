@@ -41,10 +41,12 @@ public class TestVlcLauncherScheduledTask {
 		}		
 
 		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
+		checkMemory();		
+
 		//System.out.println("runTest num");
 		//test();
 
-		for(int a=0;a<=2;a++) {
+		for(int a=0;a<=1;a++) {
 			System.out.println("runTest num = "+a);
 			test();
 			try {
@@ -68,12 +70,11 @@ public class TestVlcLauncherScheduledTask {
 		videoLength = PropertiesManager.getVideoLength();
 
 		for (String webcamId : enabledWebcamPropertiesMap.keySet()){
-			if(!latestFileList.isEmpty()) {
-				diskSPaceManager.addLatestFile(latestFileList.get(0));
-			}
+			if(latestFileList.size()==2) {
+				FileWithCreationTime fileWithCreationTime = latestFileList.remove(0);
+				diskSPaceManager.addLatestFile(fileWithCreationTime);
 
-			while(!diskSPaceManager.hasEnoughMemory()) {
-				diskSPaceManager.deleteOldestFilesFromMemory();
+				checkMemory();
 			}
 
 			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
@@ -118,6 +119,12 @@ public class TestVlcLauncherScheduledTask {
 		}
 
 		return folderPath;
+	}
+
+	private void checkMemory() {
+		while(!diskSPaceManager.hasEnoughMemory()) {
+			diskSPaceManager.deleteOldestFilesFromMemory();
+		}
 	}
 
 	private void checkFolder(String storageFolderFullPath) {

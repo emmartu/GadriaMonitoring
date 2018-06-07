@@ -63,7 +63,7 @@ public class DiskSpaceManager {
 		//log.info("sortedList first item: "+firstItem);
 		System.out.println("sorted time file map, first key: "+firstItem);
 		File file = diskSpaceProperties.getFileMap().get(firstItem);
-		System.out.println("sorted time file map, first file to remove: "+file.getAbsolutePath());
+		System.out.println("sorted time file map, first file to remove: "+file.getAbsolutePath()+", size: "+file.length());
 		//log.info("first item, file to remove: "+file.getName()+" path: "+file.getAbsolutePath());
 
 		if (file.isFile()) {
