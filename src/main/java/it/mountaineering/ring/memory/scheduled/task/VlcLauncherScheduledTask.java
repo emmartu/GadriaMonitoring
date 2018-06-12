@@ -22,6 +22,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	
 	{
 		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getVideoAbsoluteStorageFolder(), PropertiesManager.getVideoMaxDiskSpace());
+		log.info("init Vlc Launcher Scheduled Task");
 		checkMemory();		
 	}
 
@@ -30,9 +31,8 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	private static List<FileWithCreationTime> latestFileList;
 	
 	public void run() {
-		//log.info("run start!");
 		now = new Date(); // initialize date
-		System.out.println("VlcLauncherScheduledTask run date: "+now);
+		log.info("Vlc Launcher Scheduled Task start! Date: "+now);
 		this.hasStarted = true;
 		initLatestFileList();
 
@@ -53,8 +53,7 @@ public class VlcLauncherScheduledTask extends TimerTask {
 			
 
 			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
-			//log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
-			System.out.println("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
+			log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
 
 			String relativeStorageFolder = webcamProperty.getVideoRelativeStorageFolder();
 			absoluteStorageFolder = checkSlashesOnPath(absoluteStorageFolder);
@@ -70,14 +69,13 @@ public class VlcLauncherScheduledTask extends TimerTask {
 			long latestFileCreationTime = System.currentTimeMillis();
 			
 			String videoLanExePath = PropertiesManager.getVideoLanExePath();
-			//log.info("videoLanExePath: "+videoLanExePath);
 			
 			try {
 				Runtime.
 				   getRuntime().
 				   exec("cmd /c start /B \"\" "+VLC_VIDEO_RECORDER_BAT+" "+webcamProperty.getiD()+" "+webcamProperty.getIp()+" "+storageFileFullPath+" "+videoLength+" \""+videoLanExePath+"\"");
 			} catch (Exception e) {
-				System.out.println("exception occurred grabbing video");
+				log.severe("exception occurred grabbing video");
 				e.printStackTrace();
 			}
 
@@ -109,7 +107,6 @@ public class VlcLauncherScheduledTask extends TimerTask {
 	private void checkFolder(String storageFolderFullPath) {
 		File directory = new File(storageFolderFullPath);
 		if (!directory.exists()||!directory.isDirectory()) {
-			System.out.println("folder: "+directory+" doesn't exist, create");
 			directory.mkdir();	
 		}
 	}

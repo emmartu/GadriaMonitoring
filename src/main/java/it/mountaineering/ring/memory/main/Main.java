@@ -1,13 +1,11 @@
 package it.mountaineering.ring.memory.main;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Timer;
-import java.util.concurrent.SynchronousQueue;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import it.mountaineering.ring.memory.exception.PropertiesException;
 import it.mountaineering.ring.memory.scheduled.task.CurrentPictureTakerTask;
@@ -18,6 +16,8 @@ import it.mountaineering.ring.memory.util.PropertiesManager;
 public class Main {
 
 	private static final java.util.logging.Logger log = Logger.getLogger(Main.class.getName());
+
+	private static final String LOGGING_PROPERTIES = "logging.properties";
 
 	public static Timer vlcTimer;
 	public static VlcLauncherScheduledTask vlcLauncher;
@@ -30,12 +30,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		//main.setUpLogger();
+		main.setUpLogger();
 		try {
 			main.setupProperties();
 		} catch (PropertiesException e) {
-			log.info(e.getMessage());
-			log.info("the application has been stopped");
+			log.severe(e.getMessage());
+			log.severe("the application has been stopped");
 			return;
 		}
 
@@ -49,36 +49,20 @@ public class Main {
 	}
 	
 	private void setUpLogger() {
-	    FileHandler fileHandler = null;
-
-	    try {
-			fileHandler = new FileHandler(".\\MyLogFile.log", true);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	    log.addHandler(fileHandler);
-	    log.setLevel(Level.ALL);
-	    SimpleFormatter formatter = new SimpleFormatter();
-	    fileHandler.setFormatter(formatter);
-
-	    log.log(Level.WARNING, "My first log");
+        try {
+            LogManager.getLogManager().readConfiguration(new FileInputStream(LOGGING_PROPERTIES));
+        } catch (SecurityException | IOException e1) {
+            e1.printStackTrace();
+        }
+        
 	}
 	
 	private void setupProperties() throws PropertiesException {
-		//log.info("*******************************************");
-		//log.info("*******************************************");
-		//log.info("****** WEBCAM VIDEO RECORDER MANAGER ******");
-		//log.info("*******************************************");
-		//log.info("*******************************************");
-
-		System.out.println("*******************************************");
-		System.out.println("*******************************************");
-		System.out.println("****** WEBCAM VIDEO RECORDER MANAGER ******");
-		System.out.println("*******************************************");
-		System.out.println("*******************************************");
+		log.info("*******************************************");
+		log.info("*******************************************");
+		log.info("****** WEBCAM VIDEO RECORDER MANAGER ******");
+		log.info("*******************************************");
+		log.info("*******************************************");
 
 		PropertiesManager.setupConfigProperties();
 	}

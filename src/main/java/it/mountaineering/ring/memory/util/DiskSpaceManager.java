@@ -26,8 +26,7 @@ public class DiskSpaceManager {
 	}
 
 	public boolean hasEnoughMemory() {
-		//log.info("hasEnoughMemory()");
-		System.out.println("check has enough memory on folder: "+storageFolder);
+		log.fine("hasEnoughMemory()");
 		File storageFile = new File(storageFolder);
 
 		if(diskSpaceProperties==null||
@@ -38,33 +37,27 @@ public class DiskSpaceManager {
 
 		Long safetythreshold = calculateSafetyThreshold(diskSpaceProperties);
 		Long freeSpace = maxDiskSpace - diskSpaceProperties.getFolderSize();
-		System.out.println("freeSpace: (maxDiskSpace)"+maxDiskSpace+" - (actual folder busy size)"+diskSpaceProperties.getFolderSize()+" = (freespace)"+freeSpace);
-
-		//log.info("freeSpace: "+maxDiskSpace+" - "+diskSpaceProperties.getFolderSize()+" = "+freeSpace);
+		log.finer("freeSpace: "+maxDiskSpace+" - "+diskSpaceProperties.getFolderSize()+" = "+freeSpace);
 
 		if (freeSpace >= safetythreshold) {
-			//log.info("OK --> freeSpace >= safetythreshold");
-			System.out.println("OK --> freeSpace >= safetythreshold");
+			log.finer("OK --> freeSpace >= safetythreshold");
+
 			return true;
 		}
 
-		//log.info("NO OK --> freeSpace < safetythreshold");
-		System.out.println("NO OK --> freeSpace < safetythreshold");
+		log.finer("NO OK --> freeSpace < safetythreshold");
 		return false;
 	}
 
 	public void deleteOldestFilesFromMemory() {
-		//log.info("deleteOldestFilesFromMemory");
-		System.out.println("delete Oldest Files From Memory");
+		log.fine("Delete Oldest Files From Memory");
 
 		Collection<Long> unsortedEpochList = diskSpaceProperties.getFileMap().keySet();
 		List<Long> sorted = asSortedList(unsortedEpochList);
 		Long firstItem = sorted.get(0);
-		//log.info("sortedList first item: "+firstItem);
-		System.out.println("sorted time file map, first key: "+firstItem);
+		log.finer("sorted time file map, first key: "+firstItem);
 		File file = diskSpaceProperties.getFileMap().get(firstItem);
-		System.out.println("sorted time file map, first file to remove: "+file.getAbsolutePath()+", size: "+file.length());
-		//log.info("first item, file to remove: "+file.getName()+" path: "+file.getAbsolutePath());
+		log.finer("sorted time file map, first file to remove: "+file.getAbsolutePath()+", size: "+file.length());
 
 		if (file.isFile()) {
 			Long size = file.length();
@@ -72,10 +65,9 @@ public class DiskSpaceManager {
 			diskSpaceProperties.removeFileNumber(1L);
 			diskSpaceProperties.getFileMap().remove(firstItem);
 			boolean deleted = file.delete();
-			//log.info("file deleted: "+deleted);
-			System.out.println("file deleted: "+deleted);
+			log.finer("file deleted: "+deleted);
 		}else {
-			System.out.println("invalid file to remove!"+file.getName());
+			log.warning("invalid file to remove!"+file.getName());
 		}
 	}
 
@@ -86,8 +78,7 @@ public class DiskSpaceManager {
 	}
 
 	protected Long calculateSafetyThreshold(DiskSpaceProperties diskSpaceProperties) {
-		//log.info("init calculateSafetyThreshold");
-		System.out.println("calculateSafetyThreshold");
+		log.fine("calculateSafetyThreshold");
 
 		Double safetythreshold = new Double(0);
 		Double folderSize = new Double(diskSpaceProperties.getFolderSize());
@@ -97,28 +88,27 @@ public class DiskSpaceManager {
 		safetythreshold = safetythreshold + fiftyPercent;
 
 		Long longSafetythreshold = (new Double(safetythreshold)).longValue();
-		System.out.println("calculateSafetyThreshold: "+longSafetythreshold);
-
+		log.finer("calculateSafetyThreshold: "+longSafetythreshold);
+		
 		return longSafetythreshold;
 	}
 
 	
 	
 	protected DiskSpaceProperties getDiskSpaceProperties(File directory) {
-		//log.info("init DiskSpaceProperties");
-		System.out.println("********  init DiskSpaceProperties  **********");
+		log.info("*************  init DiskSpaceProperties  ***************");
 		DiskSpaceProperties diskSpaceFile = new DiskSpaceProperties();
 
 		for (File file : directory.listFiles()) {
 			if (file.isFile()) {
-				System.out.println("-- getDiskSpaceProperties -- add file: "+file+" on DiskSpaceProperties");
+				log.info("-- getDiskSpaceProperties -- add file: "+file+" on DiskSpaceProperties");
 
 				diskSpaceFile.addFolderSize(file.length());
 				diskSpaceFile.addFileNumber(1L);
 				FileWithCreationTime fileWithCreationTime = new FileWithCreationTime(file.getAbsolutePath(), getFileCreationEpoch(file));
 				diskSpaceFile.putFileInMap(fileWithCreationTime);
 			} else {
-				System.out.println("-- getDiskSpaceProperties -- get subfolder properties: "+file);
+				log.info("-- getDiskSpaceProperties -- get subfolder properties: "+file);
 
 				DiskSpaceProperties diskSpaceFileTemp = getDiskSpaceProperties(file);
 				diskSpaceFile.addFolderSize(diskSpaceFileTemp.getFolderSize());
@@ -127,16 +117,15 @@ public class DiskSpaceManager {
 			}
 		}
 
-		//log.info("return diskSpaceFile FolderSize: "+diskSpaceFile.getFolderSize()+", FileNumber: "+diskSpaceFile.getFileNumber()+", fileMap: "+diskSpaceFile.getFileMap().toString());
-		System.out.println("return diskSpaceFile for folder: "+directory+" FolderSize: "+diskSpaceFile.getFolderSize()+", FileNumber: "+diskSpaceFile.getFileNumber());
-		System.out.println("********  END DiskSpaceProperties  **********");
+		log.info("return diskSpaceFile for folder: "+directory+" FolderSize: "+diskSpaceFile.getFolderSize()+", FileNumber: "+diskSpaceFile.getFileNumber());
+		log.info("********  END DiskSpaceProperties  **********");
 
 		return diskSpaceFile;
 	}
 
 	public void addLatestFile(FileWithCreationTime fileWithCreationTime) {
-		//log.info("add Latest File name: "+fileWithCreationTime.getFile().getName()+", size: "+fileWithCreationTime.getFile().length()+", creation time: "+fileWithCreationTime.getCreationTime());
-		System.out.println("add Latest File name: "+fileWithCreationTime.getFile().getName()+", size: "+fileWithCreationTime.getFile().length()+", creation time: "+fileWithCreationTime.getCreationTime());
+		log.fine("add Latest File name: "+fileWithCreationTime.getFile().getName()+", size: "+fileWithCreationTime.getFile().length()+", creation time: "+fileWithCreationTime.getCreationTime());
+		
 		if(diskSpaceProperties==null) {
 			diskSpaceProperties = new DiskSpaceProperties();
 		}
@@ -145,8 +134,6 @@ public class DiskSpaceManager {
 		Long size = fileWithCreationTime.getFile().length();
 		diskSpaceProperties.addFolderSize(size);
 		diskSpaceProperties.putFileInMap(fileWithCreationTime);
-
-		//log.info("addLatestFile --> set diskSpaceProperties, file number: "+diskSpaceProperties.getFileNumber()+", folder size: "+diskSpaceProperties.getFolderSize()+", file map: "+diskSpaceProperties.getFileMap().toString());
 	}
 
 	

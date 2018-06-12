@@ -18,7 +18,6 @@ import it.mountaineering.ring.memory.bean.FileWithCreationTime;
 import it.mountaineering.ring.memory.bean.WebcamProperty;
 import it.mountaineering.ring.memory.util.DiskSpaceManager;
 import it.mountaineering.ring.memory.util.PropertiesManager;
-import it.mountaineering.ring.memory.util.UtilityForTests;
 
 public class CurrentPictureTakerTask extends TimerTask {
 
@@ -27,7 +26,7 @@ public class CurrentPictureTakerTask extends TimerTask {
 	
 	{
 		diskSPaceManager = new DiskSpaceManager(PropertiesManager.getPictureAbsoluteStorageFolder(), PropertiesManager.getPictureMaxDiskSpace());
-		log.info("diskSPaceManager creation");
+		log.info("init Current Picture Taker Task");
 	}
 	
 	Date now;
@@ -35,9 +34,8 @@ public class CurrentPictureTakerTask extends TimerTask {
 	private static List<FileWithCreationTime> latestFileList;
 	
 	public void run() {
-		//log.info("run start!");
 		now = new Date(); // initialize date
-		System.out.println("CurrentPictureTakerTask run date: "+now);
+		log.info("Current Picture Taker Task start! Date: "+now);
 		this.hasStarted = true;
 		initLatestFileList();
 
@@ -57,8 +55,7 @@ public class CurrentPictureTakerTask extends TimerTask {
 			}
 
 			WebcamProperty webcamProperty = enabledWebcamPropertiesMap.get(webcamId);
-			//log.info("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
-			System.out.println("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
+			log.fine("Time is :" + now+ " webcam "+webcamId+" - enabled: "+webcamProperty.isEnabled()+" - IP: "+webcamProperty.getIp()+" - folder: "+webcamProperty.getVideoRelativeStorageFolder());
 
 			String relativeStorageFolder = webcamProperty.getPictureRelativeStorageFolder();
 			pictureAbsoluteStorageFolder = checkSlashesOnPath(pictureAbsoluteStorageFolder);
@@ -74,14 +71,11 @@ public class CurrentPictureTakerTask extends TimerTask {
 			long latestFileCreationTime = System.currentTimeMillis();
 			
 			String imageUrl = "http://"+webcamProperty.getIp()+"/record/current.jpg";
-			//String imageUrl = "C:\\Users\\Lele\\Documents\\LavoroWebCamMobotix\\test.jpg";
-			//UtilityForTests.createNewFile(storageFileFullPath);
-			//UtilityForTests.copyFileUsingFileStreams(new File(imageUrl),new File(storageFileFullPath));
 			
 			try {
 				saveImage(imageUrl, storageFileFullPath);
 			} catch (IOException e1) {
-				System.out.println("exception occurred saving image");
+				log.severe("exception occurred saving image");
 				e1.printStackTrace();
 			}
 
@@ -91,7 +85,7 @@ public class CurrentPictureTakerTask extends TimerTask {
 	}
 
 	private void saveImage(String imageUrl, String destinationFile) throws IOException {
-		System.out.println("imageUrl: "+imageUrl+", destinationFile: "+destinationFile);
+		log.info("imageUrl: "+imageUrl+", destinationFile: "+destinationFile);
 		URL url = new URL(imageUrl);
 		InputStream is = url.openStream();
 		OutputStream os = new FileOutputStream(destinationFile);
@@ -124,8 +118,6 @@ public class CurrentPictureTakerTask extends TimerTask {
 	private void checkFolder(String storageFolderFullPath) {
 		File directory = new File(storageFolderFullPath);
 		if (!directory.exists()||!directory.isDirectory()) {
-			//log.info("folder doesn't exist, create");
-			System.out.println("folder doesn't exist, create");
 			directory.mkdir();	
 		}
 	}
