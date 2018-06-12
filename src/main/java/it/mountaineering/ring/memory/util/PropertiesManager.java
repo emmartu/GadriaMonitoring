@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -44,6 +46,7 @@ public class PropertiesManager {
 	protected static Map<String, String> propertiesMap = new HashMap<String, String>();
 	protected static Map<String, WebcamProperty> webcamPropertiesMap = new HashMap<String, WebcamProperty>();
 	protected static Map<String, WebcamProperty> enabledWebcamPropertiesMap = new HashMap<String, WebcamProperty>();
+	protected static Map<String, Boolean> webcamErrorMap = new HashMap<String, Boolean>();
 	protected static String[] webcamArray;
 	protected static boolean checkIp = true;
 
@@ -148,6 +151,7 @@ public class PropertiesManager {
 			try {
 				webcamProperty = getWebcamPropertyFromConfigPropertiesById(webcamArray[i]);
 			} catch (WebcamPropertyIDException e) {
+				webcamErrorMap.put(webcamArray[i], true);
 				log.severe("error occured reading webcam " + webcamArray[i] + " property ");
 				continue;
 			}
@@ -158,11 +162,27 @@ public class PropertiesManager {
 			}
 		}
 
+		if(!isStartAllowed()) {
+			log.severe("error occured reading webcam properties on each of the enabled webcams");
+			throw new PropertiesException("Cannot Read Properties correctly from each Webcams");
+		}
+		
+
 		log.info("***********************************************");
 		log.info("***********************************************");
 		log.info("********* Properties setup Complete ***********");
 		log.info("***********************************************");
 		log.info("***********************************************");
+	}
+
+	private static boolean isStartAllowed() {
+		for (String webcamName : enabledWebcamPropertiesMap.keySet()) {
+			if (!(webcamErrorMap.get(webcamName)!=null && webcamErrorMap.get(webcamName)== true)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	private static String getStringPropertyByName(String propertyName) throws PropertiesException {

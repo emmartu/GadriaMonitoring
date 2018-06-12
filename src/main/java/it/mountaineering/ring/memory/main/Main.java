@@ -34,8 +34,7 @@ public class Main {
 		try {
 			main.setupProperties();
 		} catch (PropertiesException e) {
-			log.severe(e.getMessage());
-			log.severe("the application has been stopped");
+			log.severe(e.getMessage()+" **** the application has been stopped *** ");
 			return;
 		}
 
